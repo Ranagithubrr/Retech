@@ -1,0 +1,82 @@
+.detailMobileArea {
+  width: 80%;
+}
+.detailMobileArea .photoBox .mainPhoto {
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.detailMobileArea .photoBox .mainPhoto img {
+  width: 80%;
+  margin: 0 auto;
+  transition: 0.3s ease-in-out;
+}
+.detailMobileArea .photoBox .mainPhoto img:hover {
+  transform: scale(1.3);
+  cursor: zoom-in;
+}
+.detailMobileArea .photoBox .otherPhotos {
+  display: flex;
+}
+.detailMobileArea .photoBox .otherPhotos img {
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+}
+.detailMobileArea .detailsBox h5 {
+  font-size: 18px;
+}
+.detailMobileArea .detailsBox p {
+  font-size: 16px;
+  text-align: justify;
+  display: block;
+}
+.detailMobileArea .rightDetailBox .phoneName {
+  font-size: 24px;
+}
+.detailMobileArea .rightDetailBox .availablity {
+  font-size: 18px;
+  font-weight: normal;
+  padding-top: 10px;
+}
+.detailMobileArea .rightDetailBox .availablity span {
+  font-weight: 500;
+  color: #124D99;
+}
+.detailMobileArea .rightDetailBox .detailspans {
+  display: block;
+  font-size: 16px;
+  padding: 5px 0;
+}
+.detailMobileArea .rightDetailBox .detailspans span {
+  font-weight: 500;
+  font-size: 20px;
+}
+.detailMobileArea .rightDetailBox .orderBtn {
+  background-color: #124D99;
+  color: #dcdcdc;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 4px 10px;
+  display: block;
+  margin-top: 5px;
+  text-decoration: none;
+  text-align: center;
+  width: 40%;
+}
+.detailMobileArea .thankyou-box {
+  text-align: center;
+}
+.detailMobileArea .thankyou-box .orderplaced {
+  font-weight: 500;
+  font-size: 20px;
+}
+.detailMobileArea .thankyou-box .thank {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.detailMobileArea .thankyou-box .connectSoon {
+  font-size: 18px;
+  font-weight: 500;
+}/*# sourceMappingURL=detailmobile.css.map */

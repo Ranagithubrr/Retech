@@ -1,0 +1,33 @@
+.mainDashboard {
+  width: 80%;
+}
+.mainDashboard .filterarea {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  padding-left: 50px;
+}
+.mainDashboard .filterarea h4 {
+  font-size: 20px;
+}
+.mainDashboard .filterarea span {
+  font-size: 15px;
+  padding: 0 5px;
+}
+.mainDashboard .filterarea select {
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+  padding: 5px;
+  outline: none;
+  border-radius: 3px;
+  margin: 0 5px;
+}
+.mainDashboard .filterarea .filterBtn {
+  background-color: #124D99;
+  color: #dcdcdc;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 4px 10px;
+  margin-left: 10px;
+}/*# sourceMappingURL=dashboard.css.map */

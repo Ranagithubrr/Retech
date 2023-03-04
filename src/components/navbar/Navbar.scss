@@ -1,0 +1,36 @@
+.navbarArea {
+    padding: 30px;
+
+    .logoimg {
+        width: 12rem;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+
+        li {
+            list-style-type: none;
+            padding: 0 10px;
+
+            a {
+                text-decoration: none;
+                color: #18519B;
+                font-weight: 500;
+                font-size: 17px;
+            }
+        }
+
+    }
+    .callNow{
+        text-decoration: none;
+        color:#18519B;
+        font-weight: 500;
+        float:right;
+        span{
+            font-size: 22px;
+            padding-right: 10px;
+        }
+    }
+}

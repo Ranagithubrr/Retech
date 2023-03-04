@@ -1,0 +1,49 @@
+.sidebar {
+  width: 20%;
+  height: 70vh;
+  overflow-y: scroll;
+}
+.sidebar h4 {
+  font-size: 20px;
+}
+.sidebar .mobileBrands span {
+  display: block;
+  font-size: 15px;
+  color: #6e6e6e;
+  font-weight: 500;
+  padding: 5px 0;
+  cursor: pointer;
+}
+.sidebar .adminView h4 {
+  font-size: 17px;
+  color: #4b4b4b;
+  padding-left: 20px;
+}
+.sidebar .adminView ul {
+  margin: 0;
+  padding: 0;
+}
+.sidebar .adminView ul li {
+  list-style: none;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .adminView ul li span {
+  font-size: 20px;
+  padding-right: 10px;
+}
+.sidebar .adminView ul li:hover {
+  background-color: rgba(223, 223, 223, 0.768627451);
+  cursor: pointer;
+}
+.sidebar .adminView ul li a {
+  text-decoration: none;
+  color: #777777;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}/*# sourceMappingURL=sidebar.css.map */

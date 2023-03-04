@@ -1,0 +1,55 @@
+.sidebar{
+    width:20%;
+    height:70vh;
+    overflow-y: scroll;
+    // border:1px solid #d3d3d3;
+    // padding-left: 20px;
+    h4{
+        font-size: 20px;        
+    }
+    .mobileBrands{
+        span{
+            display: block;
+            font-size: 15px;
+            color:#6e6e6e;
+            font-weight: 500;
+            padding:5px 0;
+            cursor: pointer;
+        }
+    }
+    .adminView{
+        h4{
+            font-size: 17px;
+            color:#4b4b4b;
+            padding-left: 20px;
+        }
+        ul{
+            margin:0;
+            padding:0;
+            li{
+                list-style: none;
+                padding:0px 20px;
+                display: flex;
+                align-items: center;
+                span{
+                    font-size: 20px;
+                    padding-right: 10px;
+                }
+                &:hover{         
+                    background-color: #dfdfdfc4;           
+                    cursor: pointer;
+                }
+                a{
+                    text-decoration: none;
+                    color:#777777;
+                    font-weight: 500;
+                    font-size: 15px;
+                    padding:10px 0;
+                    display: block;
+                    width:100%;
+                    height:100%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.addmobileArea {
+  padding: 20px;
+  width: 70%;
+}
+.addmobileArea .addmobileBtn {
+  background-color: #124D99;
+  color: #dcdcdc;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 8px 10px;
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+  text-align: center;
+  width: 40%;
+}
+.addmobileArea .inputImagesIcon {
+  font-size: 40px;
+  cursor: pointer;
+}
+.addmobileArea #fileInput {
+  display: none;
+}/*# sourceMappingURL=Addmobile.css.map */

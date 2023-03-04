@@ -1,0 +1,49 @@
+.adminMobilesArea {
+  padding: 20px;
+}
+.adminMobilesArea h5 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #4b4b4b;
+}
+.adminMobilesArea table {
+  border-spacing: 15px;
+  padding: 5px 25px;
+  min-width: 70vw;
+}
+.adminMobilesArea table tr:nth-child(even) {
+  background-color: #F1F1F1;
+}
+.adminMobilesArea table tr th {
+  padding: 5px 25px;
+  text-align: center;
+}
+.adminMobilesArea table tr th:nth-child(2) {
+  text-align: left;
+}
+.adminMobilesArea table tr td {
+  padding: 0 25px;
+  text-align: center;
+  color: #777777;
+  font-size: 14px;
+  font-weight: 500;
+}
+.adminMobilesArea table tr td span {
+  font-size: 20px;
+  cursor: pointer;
+}
+.adminMobilesArea table tr td .deletIcon {
+  color: crimson;
+  padding-left: 5px;
+}
+.adminMobilesArea table tr td .completeIcon {
+  color: green;
+}
+.adminMobilesArea table tr td:nth-child(2) {
+  text-align: left;
+}
+.adminMobilesArea table tr td img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}/*# sourceMappingURL=adminmobiles.css.map */

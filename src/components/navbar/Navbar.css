@@ -1,0 +1,31 @@
+.navbarArea {
+  padding: 30px;
+}
+.navbarArea .logoimg {
+  width: 12rem;
+}
+.navbarArea ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.navbarArea ul li {
+  list-style-type: none;
+  padding: 0 10px;
+}
+.navbarArea ul li a {
+  text-decoration: none;
+  color: #18519B;
+  font-weight: 500;
+  font-size: 17px;
+}
+.navbarArea .callNow {
+  text-decoration: none;
+  color: #18519B;
+  font-weight: 500;
+  float: right;
+}
+.navbarArea .callNow span {
+  font-size: 22px;
+  padding-right: 10px;
+}/*# sourceMappingURL=Navbar.css.map */

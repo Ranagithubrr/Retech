@@ -1,0 +1,102 @@
+.detailMobileArea {
+    width: 80%;
+
+    .photoBox {
+        .mainPhoto {
+            text-align: center;
+            box-sizing: border-box;
+            overflow: hidden;
+
+            img {
+                width: 80%;
+                margin: 0 auto;
+                transition: 0.3s ease-in-out;
+
+                &:hover {
+                    transform: scale(1.3);
+                    cursor: zoom-in;
+                }
+            }
+        }
+
+        .otherPhotos {
+            display: flex;
+
+            img {
+                height: 100px;
+                width: 100px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .detailsBox {
+        h5 {
+            font-size: 18px;
+        }
+
+        p {
+            font-size: 16px;
+            text-align: justify;
+            display: block;
+        }
+    }
+
+    .rightDetailBox {
+        .phoneName {
+            font-size: 24px;
+        }
+
+        .availablity {
+            font-size: 18px;
+            font-weight: normal;
+            padding-top: 10px;
+
+            span {
+                font-weight: 500;
+                color: #124D99;
+
+            }
+        }
+
+        .detailspans {
+            display: block;
+            font-size: 16px;
+            padding: 5px 0;
+
+            span {
+                font-weight: 500;
+                font-size: 20px;
+            }
+        }
+
+        .orderBtn {
+            background-color: #124D99;
+            color: #dcdcdc;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            padding: 4px 10px;
+            display: block;
+            margin-top: 5px;
+            text-decoration: none;
+            text-align: center;
+            width:40%;
+        }
+    }
+    .thankyou-box{
+        text-align: center;
+        .orderplaced{
+            font-weight: 500;
+            font-size: 20px;
+        }
+        .thank{
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        .connectSoon{
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}

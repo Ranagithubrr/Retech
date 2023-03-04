@@ -1,0 +1,63 @@
+.adminMobilesArea {
+    padding: 20px;
+
+    h5 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #4b4b4b;
+    }
+
+    table {
+        border-spacing: 15px;
+        // border: 1px solid black;
+        padding: 5px 25px;
+        min-width: 70vw;
+
+        tr {
+            &:nth-child(even) {
+                background-color: #F1F1F1;
+            }
+
+            th {
+                // border: 1px solid black;
+                padding: 5px 25px;
+                text-align: center;
+
+                &:nth-child(2) {
+                    text-align: left;
+                }
+            }
+
+            td {
+                // border: 1px solid black;
+                padding: 0 25px;
+                text-align: center;
+                color: #777777;
+                font-size: 14px;
+                font-weight: 500;
+                span{
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+                .deletIcon{
+                    color:crimson;
+                    padding-left: 5px;
+                }
+                .completeIcon{
+                    color:green;
+                }
+
+                &:nth-child(2) {
+                    text-align: left;
+                }
+
+                img {
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    // border: 1px solid #4b4b4b;
+                }
+            }
+        }
+    }
+}
