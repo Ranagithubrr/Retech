@@ -39,8 +39,7 @@ const Dasboard = () => {
                     </select>
                     <button className='filterBtn'>Filter Items</button>
                 </div>
-            </div>
-            
+            </div>            
                 <Mobile />                             
             
         </div>

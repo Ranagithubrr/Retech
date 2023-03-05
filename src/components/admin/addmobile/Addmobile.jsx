@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Addmobile.css';
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { addDoc, collection, updateDoc } from 'firebase/firestore';
@@ -8,7 +8,8 @@ import { v4 } from 'uuid'
 
 const Addmobile = () => {
     const [imglink, setimglink] = useState('')
-    const [mobileDetail, setMobileDetail] = useState({ // here the datas to send
+    const [imageUploaded, setImageUploaded] = useState(false);
+    const [mobileDetail, setMobileDetail] = useState({
         brand: '',
         model: '',
         userange: '',
@@ -20,25 +21,31 @@ const Addmobile = () => {
         condition: '',
         fingerprint: '',
         status: '',
-        img: '', // this img value not sending first time
+        img: '',
         description: '',
-
     });
-// how to fix this?
-// not setting the data first time, how to solve this? I think it could be solve with promise or async await, but I could not do that. 
 
     const [images, setImages] = useState(null);
     const sendDataToDB = async () => {
         try {
             const docRef = await addDoc(collection(db, "mobiles"), {
-                mobileDetail 
+                mobileDetail
             });
             console.log("Document written with ID: ", docRef.id);
+            console.log(mobileDetail); // move console.log here
         } catch (e) {
             console.error("Error adding document: ", e);
         }
 
     }
+
+    useEffect(() => {
+        if (imageUploaded) {
+            sendDataToDB();
+        }
+    }, [mobileDetail]);
+
+
     const Submitclicked = async (e) => {
         e.preventDefault();
         console.log(images);
@@ -61,20 +68,16 @@ const Addmobile = () => {
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
-                    .then(async (downloadURL) => { 
+                    .then(async (downloadURL) => {
                         if (downloadURL) {
-                           setMobileDetail({ ...mobileDetail, img: downloadURL }); 
-                           await sendDataToDB(); 
-                            console.log(mobileDetail);
+                            setMobileDetail({ ...mobileDetail, img: downloadURL });
+                            setImageUploaded(true); // set imageUploaded to true
                         }
                     })
-
             }
         );
-
-
     }
-   
+
     return (
         <div className='addmobileArea'>
             <h5>Add mobile</h5>
