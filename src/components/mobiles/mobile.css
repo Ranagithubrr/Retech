@@ -30,65 +30,89 @@
   text-decoration: none;
   text-align: center;
   width: 100%;
-}/*# sourceMappingURL=mobile.css.map */
+}
 
-/* loading animation */
-.spinerBox{
-  height:50vh;
+.emptyDiv {
+  height: 50vh;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.emptyDiv span {
+  display: block;
+}
+.emptyDiv .nomobiles {
+  font-weight: 500;
+  font-size: 22px;
+  color: #124D99;
+}
+.emptyDiv .addamobile {
+  font-weight: 500;
+  font-size: 20px;
+  color: #124D99;
+  margin-top: 10px;
   display: flex;
   align-items: center;
-  width:80%;
-  /* border:1px solid #202020; */
 }
-.spinner {  
-  /* border:1px solid #202020; */
-  width:100px;
-  height:50px;
-  margin:0 auto;
+.emptyDiv .addamobile a {
+  color: #124D99;
+}
+.emptyDiv .addamobile span {
+  font-size: 35px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.spinerBox {
+  height: 50vh;
+  width: 70vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  margin: 100px auto;
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
 }
 
 .spinner > div {
   background-color: #124D99;
   height: 100%;
   width: 6px;
-  margin:0 5px;
+  margin: 0 3px;
   display: inline-block;
-  
-  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
 
 .spinner .rect2 {
-  -webkit-animation-delay: -1.1s;
   animation-delay: -1.1s;
 }
 
 .spinner .rect3 {
-  -webkit-animation-delay: -1.0s;
-  animation-delay: -1.0s;
+  animation-delay: -1s;
 }
 
 .spinner .rect4 {
-  -webkit-animation-delay: -0.9s;
   animation-delay: -0.9s;
 }
 
 .spinner .rect5 {
-  -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
 }
-
-@-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
-  20% { -webkit-transform: scaleY(1.0) }
-}
-
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% { 
+  0%, 40%, 100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
-  }  20% { 
-    transform: scaleY(1.0);
-    -webkit-transform: scaleY(1.0);
   }
-}
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+  }
+}/*# sourceMappingURL=mobile.css.map */

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Iphone from '../../imgs/iphone1.webp';
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 import './mobile.css';
 import { db } from '../../Firebase-config/Firebase-config'
 import { collection, getDocs } from 'firebase/firestore';
@@ -33,7 +34,6 @@ const Mobile = () => {
     // console.log(mobiles.length);
     return (
         <div className="row">
-
             {
                 loading ?
                     <div className="spinerBox">
@@ -45,21 +45,29 @@ const Mobile = () => {
                             <div class="rect5"></div>
                         </div>
                     </div> : (
-                        mobiles.map((ele) => {
-                            return (
-                                <div className='col-4 mt-4'>
-                                    <div className="mobileBox">
-                                        <img src={'https://www.mobiledokan.com/wp-content/uploads/2022/03/Xiaomi-Redmi-Note-11.jpg'} className="img-fluid" alt="mobile" />
-                                        <h6>{ele.mobileDetail.model}</h6>
-                                        <span>৳ {ele.mobileDetail.price}</span>
-                                        <Link to={`/mobile/${ele.id}`} className='viewMobile'>View this Mobile</Link>
+                        mobiles.length === 0 ? <div className="emptyDiv">
+                            <span className='nomobiles'>OOPS ! You have no mobiles yet 😟</span>
+                            <span className='addamobile'>Add a now
+                                <Link to="/add-mobile">
+                                    <span className="icon"><AiOutlinePlusCircle /></span>
+                                </Link>
+                            </span>
+                        </div>
+                            :
+                            mobiles.map((ele) => {
+                                return (
+                                    <div className='col-4 mt-4'>
+                                        <div className="mobileBox">
+                                            <img src={'https://www.mobiledokan.com/wp-content/uploads/2022/03/Xiaomi-Redmi-Note-11.jpg'} className="img-fluid" alt="mobile" />
+                                            <h6>{ele.mobileDetail.model}</h6>
+                                            <span>৳ {ele.mobileDetail.price}</span>
+                                            <Link to={`/mobile/${ele.id}`} className='viewMobile'>View this Mobile</Link>
+                                        </div>
                                     </div>
-                                </div>
-                            );
-                        })
+                                );
+                            })
                     )
             }
-
         </div>
     );
 };

@@ -26,16 +26,13 @@ const Addmobile = () => {
     });
 
     const [images, setImages] = useState(null);
-
-    const maxImages = 5;
-
     const sendDataToDB = async () => {
         try {
             const docRef = await addDoc(collection(db, "mobiles"), {
                 mobileDetail
             });
             console.log("Document written with ID: ", docRef.id);
-            console.log(mobileDetail);
+            console.log(mobileDetail); // move console.log here
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -48,52 +45,38 @@ const Addmobile = () => {
         }
     }, [mobileDetail]);
 
+
     const Submitclicked = async (e) => {
         e.preventDefault();
         console.log(images);
 
+
         if (images === null || images === undefined) {
             console.log('not selected');
         }
+        const storageRef = ref(storage, `images/${images.name}${v4()}`);
+        const uploadTask = uploadBytesResumable(storageRef, images);
 
-        // Upload each image in the array to storage and get download URL
-        const promises = [];
-        const downloadURLs = [];
-        for (let i = 0; i < images.length && i < maxImages; i++) {
-            const image = images[i];
-            const storageRef = ref(storage, `images/${image.name}${v4()}`);
-            const uploadTask = uploadBytesResumable(storageRef, image);
-            const promise = new Promise((resolve, reject) => {
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log(`Upload ${i+1} is ` + progress + '% done');
-                    },
-                    (error) => {
-                        console.log(`Error in Upload ${i+1}`);
-                        reject(error);
-                    },
-                    () => {
-                        getDownloadURL(uploadTask.snapshot.ref)
-                            .then((downloadURL) => {
-                                if (downloadURL) {
-                                    downloadURLs.push(downloadURL);
-                                }
-                                resolve(downloadURL);
-                            })
-                    }
-                );
-            });
-            promises.push(promise);
-        }
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+            },
 
-        // Wait for all uploads to finish and update the mobileDetail with the download URLs
-        Promise.all(promises).then(() => {
-            setMobileDetail({ ...mobileDetail, img: downloadURLs });
-            setImageUploaded(true);
-        });
+            (error) => {
+                console.log('there is an error');
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then(async (downloadURL) => {
+                        if (downloadURL) {
+                            setMobileDetail({ ...mobileDetail, img: downloadURL });
+                            setImageUploaded(true); // set imageUploaded to true
+                        }
+                    })
+            }
+        );
     }
-
 
     return (
         <div className='addmobileArea'>
@@ -191,7 +174,7 @@ const Addmobile = () => {
                     <label htmlFor="fileInput">
                         <span className="inputImagesIcon"><AiOutlinePlusCircle /></span>
                     </label>
-                    <input type="file" id='fileInput' multiple onChange={(e) => setImages(e.target.files)} />
+                    <input type="file" id='fileInput' multiple onChange={(e) => setImages(e.target.files[0])} />
 
                     <button className='addmobileBtn' onClick={Submitclicked}>Add this Mobile</button>
                 </div>
