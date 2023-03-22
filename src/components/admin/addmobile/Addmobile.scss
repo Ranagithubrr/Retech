@@ -1,8 +1,8 @@
-.addmobileArea{
-    padding:20px;
-    width:70%;
-    
-    .addmobileBtn{
+.addmobileArea {
+    padding: 20px;
+    width: 70%;
+
+    .addmobileBtn {
         background-color: #124D99;
         color: #dcdcdc;
         border: none;
@@ -10,17 +10,38 @@
         border-radius: 3px;
         padding: 8px 10px;
         display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: 15px;
         text-decoration: none;
         text-align: center;
         width: 40%;
     }
-    .inputImagesIcon{
+
+    .loading {
+        background-color: #1d3555c7;
+        pointer-events: none;
+    }
+
+    .inputImagesIcon {
         font-size: 40px;
         cursor: pointer;
-        color:#6a6a6a;
+        color: #6a6a6a;
     }
-    #fileInput{
+
+    #fileInput {
         display: none;
+    }
+
+    .imgUploadBox {
+        display: flex;
+        align-items: center;
+
+        .selectFiveText {
+            font-size: 13px;
+            margin-left: 10px;
+            margin-top: 8px;
+        }
     }
 }

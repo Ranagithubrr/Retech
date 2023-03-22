@@ -1,5 +1,6 @@
 .adminMobilesArea {
     padding: 20px;
+   
 
     h5 {
         font-size: 18px;
@@ -23,14 +24,14 @@
                 padding: 5px 25px;
                 text-align: center;
 
-                &:nth-child(2) {
-                    text-align: left;
-                }
+                // &:nth-child(2) {
+                //     text-align: left;
+                // }
             }
 
             td {
                 // border: 1px solid black;
-                padding: 0 25px;
+                padding: 0 20px;
                 text-align: center;
                 color: #777777;
                 font-size: 14px;
@@ -47,9 +48,9 @@
                     color:green;
                 }
 
-                &:nth-child(2) {
-                    text-align: left;
-                }
+                // &:nth-child(2) {
+                //     text-align: left;
+                // }
 
                 img {
                     height: 40px;

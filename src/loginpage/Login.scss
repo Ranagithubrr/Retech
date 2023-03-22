@@ -1,0 +1,85 @@
+.adminLogin {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../imgs/loginbd.jpg');    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .loginArea {
+        width: 40vw;
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #124d999c;
+        border: 1px solid #204b859c;
+        border-radius: 10px;
+
+        .leftArea {
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+            img {
+                width: 50%;
+            }
+        }
+
+        .rightArea {
+            height: 100%;
+            width:50%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+
+            h4 {
+                font-size: 20px;
+                font-weight: 500;
+                color: #e7e7e7;
+            }
+
+            .inputBoxes {
+                width: 100%;
+                margin: 10px auto;
+                .inputs{
+                    position: relative;
+                    input {
+                        background-color: #F9FAFE;
+                        border: 1px solid #c9c9c9;
+                        width:100%;
+                        margin:5px 0;
+                        border:none;
+                        outline: none;
+                        border-radius: 3px;
+                        padding:5px;
+                        font-size: 14px;
+                    }                    
+                    .hideSeeIcon{
+                        position: absolute;
+                        right:10px;
+                        top:50%;
+                        cursor: pointer;
+                        color:#6e6e6e;
+                        transform: translateY(-50%);
+                    }
+                }
+                
+                button{
+                    background-color: #08CCFF;
+                    color:#F9FAFE;
+                    font-weight: 500;
+                    font-size: 18px;
+                    width:100%;
+                    border:none;
+                    outline:none;
+                    margin:10px 0;
+                    border-radius: 5px;
+                    padding:3px 0;
+                }
+            }
+        }
+    }
+}

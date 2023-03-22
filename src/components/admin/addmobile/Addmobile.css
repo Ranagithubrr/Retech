@@ -10,10 +10,17 @@
   border-radius: 3px;
   padding: 8px 10px;
   display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 15px;
   text-decoration: none;
   text-align: center;
   width: 40%;
+}
+.addmobileArea .loading {
+  background-color: rgba(29, 53, 85, 0.7803921569);
+  pointer-events: none;
 }
 .addmobileArea .inputImagesIcon {
   font-size: 40px;
@@ -22,4 +29,13 @@
 }
 .addmobileArea #fileInput {
   display: none;
+}
+.addmobileArea .imgUploadBox {
+  display: flex;
+  align-items: center;
+}
+.addmobileArea .imgUploadBox .selectFiveText {
+  font-size: 13px;
+  margin-left: 10px;
+  margin-top: 8px;
 }/*# sourceMappingURL=Addmobile.css.map */

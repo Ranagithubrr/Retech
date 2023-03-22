@@ -10,7 +10,7 @@ const Mobile = () => {
     const [mobiles, setMobiles] = useState({});
     const [loading, setLoading] = useState(true)
 
-    const fetchPost = async () => {
+    const fetchmobiles = async () => {
 
         await getDocs(collection(db, "mobiles"))
             .then((querySnapshot) => {
@@ -27,8 +27,11 @@ const Mobile = () => {
     }
 
     useEffect(() => {
-        fetchPost();
+        fetchmobiles();
     }, [])
+    useEffect(() => {
+        console.log(mobiles);
+    }, [mobiles])
     // console.log('id is: ',mobiles[0].id);
     // console.log('id is: ',mobiles[0].mobileDetail);
     // console.log(mobiles.length);
@@ -47,7 +50,7 @@ const Mobile = () => {
                     </div> : (
                         mobiles.length === 0 ? <div className="emptyDiv">
                             <span className='nomobiles'>OOPS ! You have no mobiles yet 😟</span>
-                            <span className='addamobile'>Add a now
+                            <span className='addamobile'>Add one now
                                 <Link to="/add-mobile">
                                     <span className="icon"><AiOutlinePlusCircle /></span>
                                 </Link>
@@ -58,9 +61,11 @@ const Mobile = () => {
                                 return (
                                     <div className='col-4 mt-4'>
                                         <div className="mobileBox">
-                                            <img src={'https://www.mobiledokan.com/wp-content/uploads/2022/03/Xiaomi-Redmi-Note-11.jpg'} className="img-fluid" alt="mobile" />
-                                            <h6>{ele.mobileDetail.model}</h6>
-                                            <span>৳ {ele.mobileDetail.price}</span>
+                                            <img src={ele.mobileDetail.img[0]} className="img-fluid" alt="mobile" />
+                                            <div>
+                                                <h6>{ele.mobileDetail.model}</h6>
+                                                <span>৳ {ele.mobileDetail.price}</span>
+                                            </div>
                                             <Link to={`/mobile/${ele.id}`} className='viewMobile'>View this Mobile</Link>
                                         </div>
                                     </div>

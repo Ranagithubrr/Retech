@@ -1,0 +1,77 @@
+.adminLogin {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../imgs/loginbd.jpg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.adminLogin .loginArea {
+  width: 40vw;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(18, 77, 153, 0.6117647059);
+  border: 1px solid rgba(32, 75, 133, 0.6117647059);
+  border-radius: 10px;
+}
+.adminLogin .loginArea .leftArea {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.adminLogin .loginArea .leftArea img {
+  width: 50%;
+}
+.adminLogin .loginArea .rightArea {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.adminLogin .loginArea .rightArea h4 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #e7e7e7;
+}
+.adminLogin .loginArea .rightArea .inputBoxes {
+  width: 100%;
+  margin: 10px auto;
+}
+.adminLogin .loginArea .rightArea .inputBoxes .inputs {
+  position: relative;
+}
+.adminLogin .loginArea .rightArea .inputBoxes .inputs input {
+  background-color: #F9FAFE;
+  border: 1px solid #c9c9c9;
+  width: 100%;
+  margin: 5px 0;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 5px;
+  font-size: 14px;
+}
+.adminLogin .loginArea .rightArea .inputBoxes .inputs .hideSeeIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  cursor: pointer;
+  color: #6e6e6e;
+  transform: translateY(-50%);
+}
+.adminLogin .loginArea .rightArea .inputBoxes button {
+  background-color: #08CCFF;
+  color: #F9FAFE;
+  font-weight: 500;
+  font-size: 18px;
+  width: 100%;
+  border: none;
+  outline: none;
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 3px 0;
+}/*# sourceMappingURL=Login.css.map */

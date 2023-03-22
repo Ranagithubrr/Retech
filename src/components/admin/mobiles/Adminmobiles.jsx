@@ -1,9 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './adminmobiles.css';
 import MobileImg from '../../../imgs/iphone1.webp';
-import {FiEdit, FiTrash2} from 'react-icons/fi'
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
+import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
+import { db } from '../../../Firebase-config/Firebase-config';
 
 const Adminmobiles = () => {
+
+    const [mobiles, setMobiles] = useState({});
+    const [loading, setLoading] = useState(true)
+
+    const fetchmobiles = async () => {
+
+        await getDocs(collection(db, "mobiles"))
+            .then((querySnapshot) => {
+                const mobiledatadb = querySnapshot.docs
+                    .map((doc) => ({ ...doc.data(), id: doc.id }));
+                setMobiles(mobiledatadb);
+                setLoading(false)
+                console.log(mobiles);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
+    }
+
+    useEffect(() => {
+        fetchmobiles();
+    }, [])
+    useEffect(() => {
+        console.log(mobiles);
+    }, [mobiles])
+
+    const DeleteItem = async (id) => {
+        await deleteDoc(doc(db, "mobiles", id))
+            .then(() => {
+                fetchmobiles();
+            })
+    }
+
     return (
         <div className='adminMobilesArea'>
             <h5>All Mobiles Listed</h5>
@@ -16,41 +52,28 @@ const Adminmobiles = () => {
                     <th>Price</th>
                     <th>Actions</th>
                 </tr>
-                <tr>
-                    <td><img src={MobileImg} alt="mobileImage" /></td>
-                    <td>Redmi note 11</td>
-                    <td>active</td>
-                    <td>2</td>
-                    <td>15000</td>
-                    <td><span><FiEdit /></span> <span className='deletIcon'><FiTrash2 /></span> </td>
-                </tr>                            
-                <tr>
-                    <td><img src={MobileImg} alt="mobileImage" /></td>
-                    <td>Redmi note 11</td>
-                    <td>active</td>
-                    <td>2</td>
-                    <td>15000</td>
-                    <td><span><FiEdit /></span> <span className='deletIcon'><FiTrash2 /></span> </td>
-                </tr>                            
-                <tr>
-                    <td><img src={MobileImg} alt="mobileImage" /></td>
-                    <td>Redmi note 11</td>
-                    <td>active</td>
-                    <td>2</td>
-                    <td>15000</td>
-                    <td><span><FiEdit /></span> <span className='deletIcon'><FiTrash2 /></span> </td>
-                </tr>                            
-                <tr>
-                    <td><img src={MobileImg} alt="mobileImage" /></td>
-                    <td>Redmi note 11</td>
-                    <td>active</td>
-                    <td>2</td>
-                    <td>15000</td>
-                    <td><span><FiEdit /></span> <span className='deletIcon'><FiTrash2 /></span> </td>
-                </tr>                            
+                {
+                    !loading && mobiles.map((mob) => {
+                        return <tr>
+                            <td><img src={MobileImg} alt="mobileImage" /></td>
+                            <td>{mob.mobileDetail.model}</td>
+                            <td>{mob.mobileDetail.status}</td>
+                            <td>2</td>
+                            <td>{mob.mobileDetail.price}</td>
+                            <td><span><FiEdit /></span> <span className='deletIcon' onClick={() => DeleteItem(mob.id)}><FiTrash2 /></span> </td>
+                        </tr>
+                    })
+                }
             </table>
+            {mobiles.length === 0 &&
+                <div className="emptyDiv">
+                    <span className='nomobiles'>OOPS ! No mobiles added yet 😟</span>
+                </div>
+            }
         </div>
+
     );
+
 };
 
 export default Adminmobiles;

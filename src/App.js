@@ -14,6 +14,7 @@ import Adminmobiles from './components/admin/mobiles/Adminmobiles';
 import Addmobile from './components/admin/addmobile/Addmobile';
 import Orders from './components/admin/orders/Orders';
 import Customers from './components/admin/customers/Customers';
+import Login from './loginpage/Login';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="mobile" element={<Mobile />} />
+        <Route path="admin" element={<Login />} />
       </Routes>
 
     </div>

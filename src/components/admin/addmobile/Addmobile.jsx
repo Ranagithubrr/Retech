@@ -7,15 +7,17 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { v4 } from 'uuid'
 
 const Addmobile = () => {
-    const [imglink, setimglink] = useState('')
+    const [imglink, setimglink] = useState('');
+    const [loading, setLoading] = useState(false)
+    const [loadingClass, setLoadingClass] = useState('');
     const [imageUploaded, setImageUploaded] = useState(false);
     const [mobileDetail, setMobileDetail] = useState({
         brand: '',
         model: '',
         userange: '',
         price: null,
-        ram: null,
-        rom: null,
+        ram: 4,
+        rom: 16,
         frontCamera: null,
         rearCamera: null,
         condition: '',
@@ -36,6 +38,8 @@ const Addmobile = () => {
             });
             console.log("Document written with ID: ", docRef.id);
             console.log(mobileDetail);
+            setLoadingClass('');
+            setLoading(false);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -44,57 +48,81 @@ const Addmobile = () => {
 
     useEffect(() => {
         if (imageUploaded) {
-            sendDataToDB();
+            if (mobileDetail.img.length !== 0 || mobileDetail.img !== '') {
+                sendDataToDB();
+            } else {
+                window.alert('select at least one Image')
+            }
         }
     }, [mobileDetail]);
 
     const Submitclicked = async (e) => {
-        e.preventDefault();
-        console.log(images);
+        console.log(mobileDetail);
+        if (
+            mobileDetail.brand === ''
+            || mobileDetail.model === ''
+            || mobileDetail.userange === ''
+            || mobileDetail.price == null
+            || mobileDetail.ram === null
+            || mobileDetail.rom === null
+            || mobileDetail.frontCamera === null
+            || mobileDetail.condition === ''
+            || mobileDetail.fingerprint === ''
+            || mobileDetail.status === ''
+            || mobileDetail.description === ''
 
-        if (images === null || images === undefined) {
+        ) {
+            alert('fill all the fields')
+        }
+        else if (images === null || images === undefined) {
             console.log('not selected');
+            window.alert('add at least one image')
         }
+        else {
+            setLoadingClass('loading');
+            setLoading(true)
+            e.preventDefault();
+            console.log(images);
 
-        // Upload each image in the array to storage and get download URL
-        const promises = [];
-        const downloadURLs = [];
-        for (let i = 0; i < images.length && i < maxImages; i++) {
-            const image = images[i];
-            const storageRef = ref(storage, `images/${image.name}${v4()}`);
-            const uploadTask = uploadBytesResumable(storageRef, image);
-            const promise = new Promise((resolve, reject) => {
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log(`Upload ${i+1} is ` + progress + '% done');
-                    },
-                    (error) => {
-                        console.log(`Error in Upload ${i+1}`);
-                        reject(error);
-                    },
-                    () => {
-                        getDownloadURL(uploadTask.snapshot.ref)
-                            .then((downloadURL) => {
-                                if (downloadURL) {
-                                    downloadURLs.push(downloadURL);
-                                }
-                                resolve(downloadURL);
-                            })
-                    }
-                );
+
+            // Upload each image in the array to storage and get download URL
+            const promises = [];
+            const downloadURLs = [];
+            for (let i = 0; i < images.length && i < maxImages; i++) {
+                const image = images[i];
+                const storageRef = ref(storage, `images/${image.name}${v4()}`);
+                const uploadTask = uploadBytesResumable(storageRef, image);
+                const promise = new Promise((resolve, reject) => {
+                    uploadTask.on('state_changed',
+                        (snapshot) => {
+                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            console.log(`Upload ${i + 1} is ` + progress + '% done');
+                        },
+                        (error) => {
+                            console.log(`Error in Upload ${i + 1}`);
+                            reject(error);
+                        },
+                        () => {
+                            getDownloadURL(uploadTask.snapshot.ref)
+                                .then((downloadURL) => {
+                                    if (downloadURL) {
+                                        downloadURLs.push(downloadURL);
+                                    }
+                                    resolve(downloadURL);
+                                })
+                        }
+                    );
+                });
+                promises.push(promise);
+            }
+
+            // Wait for all uploads to finish and update the mobileDetail with the download URLs
+            Promise.all(promises).then(() => {
+                setMobileDetail({ ...mobileDetail, img: downloadURLs });
+                setImageUploaded(true);
             });
-            promises.push(promise);
         }
-
-        // Wait for all uploads to finish and update the mobileDetail with the download URLs
-        Promise.all(promises).then(() => {
-            setMobileDetail({ ...mobileDetail, img: downloadURLs });
-            setImageUploaded(true);
-        });
-    }
-
-
+    };
     return (
         <div className='addmobileArea'>
             <h5>Add mobile</h5>
@@ -104,6 +132,7 @@ const Addmobile = () => {
                     <select name="mobilename" id="" className='form-control' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, brand: e.target.value })
                     }}>
+                        <option >Brand</option>
                         <option value="xiaomi">Xiaomi</option>
                         <option value="iphone">I-Phone</option>
                         <option value="samsung">Samsung</option>
@@ -112,6 +141,7 @@ const Addmobile = () => {
                     <select name="userange" id="" className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, userange: e.target.value })
                     }}>
+                        <option >Usage</option>
                         <option value="1 Month Only">Under 1 Month</option>
                         <option value="Between 1-6 Month Only">Between 1 - 6 Month</option>
                         <option value="Between 6-12 Month Only">Between 6 - 12 Month</option>
@@ -136,7 +166,7 @@ const Addmobile = () => {
                     <select name="condition" id="" className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, condition: e.target.value })
                     }}>
-                        <option value="xiaomi">Condition</option>
+                        <option>Condition</option>
                         <option value="New">New</option>
                         <option value="Almost New">Almost New</option>
                         <option value="Nearly New">Nearly New</option>
@@ -149,16 +179,14 @@ const Addmobile = () => {
                     }}></textarea>
                 </div>
                 <div className="col-6">
-                    <input type="text" name='model' placeholder='Model' className='form-control' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, model: e.target.value })
-                    }} />
+                    <input type="text" className='form-control' placeholder='Model (It will be shown up Everywhere)' onChange={(e)=>setMobileDetail({ ...mobileDetail, model: e.target.value})}/>                                        
                     <input type="number" name='price' placeholder='Price' className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, price: e.target.value })
                     }} />
                     <select name="rom" id="" className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, rom: e.target.value })
                     }}>
-                        <option value="xiaomi">Rom (Default 16 GB)</option>
+                        <option >Rom (Default 16 GB)</option>
                         <option value="4">4 GB</option>
                         <option value="8">8 GB</option>
                         <option value="16">16 GB</option>
@@ -175,7 +203,7 @@ const Addmobile = () => {
                     <select name="fingerprint" id="" className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, fingerprint: e.target.value })
                     }}>
-                        <option value="undefined">Fingerprint</option>
+                        <option >Fingerprint</option>
                         <option value="No Fingerprint">No Fingerprint</option>
                         <option value="On the Back">On the Back</option>
                         <option value="Slide Mounted">Slide Mounted</option>
@@ -184,16 +212,33 @@ const Addmobile = () => {
                     <select name="userange" id="" className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, status: e.target.value })
                     }}>
-                        <option value="undefined">Status</option>
+                        <option>Status</option>
                         <option value="active">Active</option>
                         <option value="paused">Pause</option>
                     </select>
-                    <label htmlFor="fileInput">
-                        <span className="inputImagesIcon"><AiOutlinePlusCircle /></span>
-                    </label>
-                    <input type="file" id='fileInput' multiple onChange={(e) => setImages(e.target.files)} />
-
-                    <button className='addmobileBtn' onClick={Submitclicked}>Add this Mobile</button>
+                    <div className="imgUploadBox">
+                        <label htmlFor="fileInput">
+                            <span className="inputImagesIcon"><AiOutlinePlusCircle /></span>
+                        </label>
+                        <input type="file" id='fileInput' multiple onChange={(e) => setImages(e.target.files)} />
+                        <span className='selectFiveText'>Select Up to 5 images</span>
+                    </div>
+                    <button className={`addmobileBtn ${loadingClass}`} onClick={Submitclicked}>
+                        {
+                            loading && <div class="sk-chase">
+                                <div class="sk-chase-dot"></div>
+                                <div class="sk-chase-dot"></div>
+                                <div class="sk-chase-dot"></div>
+                                <div class="sk-chase-dot"></div>
+                                <div class="sk-chase-dot"></div>
+                                <div class="sk-chase-dot"></div>
+                            </div>
+                        }
+                        {
+                            loading ? <span>Please Wait</span> : <span>Add this Mobile</span>
+                        }
+                        
+                    </button>
                 </div>
             </div>
         </div>

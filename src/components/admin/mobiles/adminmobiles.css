@@ -18,11 +18,8 @@
   padding: 5px 25px;
   text-align: center;
 }
-.adminMobilesArea table tr th:nth-child(2) {
-  text-align: left;
-}
 .adminMobilesArea table tr td {
-  padding: 0 25px;
+  padding: 0 20px;
   text-align: center;
   color: #777777;
   font-size: 14px;
@@ -38,9 +35,6 @@
 }
 .adminMobilesArea table tr td .completeIcon {
   color: green;
-}
-.adminMobilesArea table tr td:nth-child(2) {
-  text-align: left;
 }
 .adminMobilesArea table tr td img {
   height: 40px;
