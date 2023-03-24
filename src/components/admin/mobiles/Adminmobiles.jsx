@@ -4,6 +4,7 @@ import MobileImg from '../../../imgs/iphone1.webp';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../Firebase-config/Firebase-config';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Adminmobiles = () => {
 
@@ -37,11 +38,33 @@ const Adminmobiles = () => {
         await deleteDoc(doc(db, "mobiles", id))
             .then(() => {
                 fetchmobiles();
+                toast.success('Mobile Deleted Successfully', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             })
     }
 
     return (
         <div className='adminMobilesArea'>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <h5>All Mobiles Listed</h5>
             <table>
                 <tr>

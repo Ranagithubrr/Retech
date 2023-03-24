@@ -7,7 +7,7 @@ import Sidebar from '../sidebar/Sidebar';
 const Mainhome = () => {
     return (
         <div>
-            <Navbar />
+            <Navbar/>
             <div className="mainArea">
                 <Sidebar />                
                 <Outlet />

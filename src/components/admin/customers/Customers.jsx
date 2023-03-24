@@ -1,6 +1,7 @@
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { FiCheckSquare, FiTrash2 } from 'react-icons/fi';
+import { toast, ToastContainer } from 'react-toastify';
 import { db } from '../../../Firebase-config/Firebase-config';
 import MobileImg from '../../../imgs/iphone1.webp';
 const Customers = () => {
@@ -36,12 +37,34 @@ const Customers = () => {
         await deleteDoc(doc(db, "customers", id))
             .then(() => {
                 fetchCustomers();
+                toast.success('Customer Deleted Successfully', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             })
     }
 
 
     return (
         <div className='adminMobilesArea'>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <h5>My Customers</h5>
             <table>
                 <tr>

@@ -1,51 +1,53 @@
-import React, { useState } from 'react';
-import './Login.css';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../Firebase-config/Firebase-config';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
+import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [inputtype, setInputType] = useState('password');
+    const navigate = useNavigate();      
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('');
     const [icon, setIcon] = useState('hide');
+    const [inputtype, setInputType] = useState('password');
     const Iconclicked = () => {
         inputtype === 'password' ? setInputType('text') : setInputType('password');
         icon === 'hide' ? setIcon('show') : setIcon('hide');
     }
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const LogINClicked = async ()  => {
-        try{
-            await signInWithEmailAndPassword(auth,email,password);
-            alert('success')
-        }
-        catch(err){
-            console.log(err);
-            // alert('failed')
-        }
+    const signinClicked = () => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                console.log(user);
+                navigate('/')
+                // ...
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
     return (
         <div className='adminLogin'>
-            <div className="loginArea">
-                <div className="rightArea">
+            <div className="loginArea">               
+                <div className='rightArea'>
                     <h4>Admin Log in</h4>
                     <div className="inputBoxes">
                         <div className="inputs">
-                            <input type="text" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input type="email" placeholder='email' value={email} onChange={e => setEmail(e.target.value)} />
                         </div>
                         <div className="inputs">
-                            <input type={inputtype} className='passwordInput' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.password)} />
+                            <input type={inputtype} placeholder='password' value={password} onChange={e => setPassword(e.target.value)} />
                             <span className='hideSeeIcon' onClick={Iconclicked}>{icon === 'hide' ? <AiFillEye /> : <AiFillEyeInvisible />}</span>
                         </div>
-
-                        <button onClick={LogINClicked}>Log in</button>
+                        <button onClick={signinClicked}>sign in</button>
                     </div>
                 </div>
             </div>
-
-        </div>
+        </div>       
     );
-};
+}
 
 export default Login;

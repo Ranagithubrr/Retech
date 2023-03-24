@@ -1,5 +1,7 @@
 .detailMobileArea {
   width: 80%;
+  margin-left: auto;
+  padding-top: 1rem;
 }
 .detailMobileArea .photoBox .mainPhoto {
   text-align: center;
@@ -8,7 +10,6 @@
   margin-bottom: 20px;
 }
 .detailMobileArea .photoBox .mainPhoto img {
-  width: 15rem;
   height: 15rem;
   margin: 0 auto;
   transition: 0.3s ease-in-out;
@@ -19,10 +20,12 @@
 }
 .detailMobileArea .photoBox .otherPhotos {
   display: flex;
+  height: 100px;
 }
 .detailMobileArea .photoBox .otherPhotos img {
   height: 100px;
-  width: 100px;
+  width: auto;
+  margin: 0 auto;
   cursor: pointer;
 }
 .detailMobileArea .detailsBox {
@@ -51,7 +54,7 @@
 .detailMobileArea .rightDetailBox .detailspans {
   display: block;
   font-size: 16px;
-  padding: 5px 0;
+  padding: 2px 0;
 }
 .detailMobileArea .rightDetailBox .detailspans span {
   font-weight: 500;

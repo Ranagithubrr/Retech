@@ -5,6 +5,8 @@ import { addDoc, collection, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../../../Firebase-config/Firebase-config';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { v4 } from 'uuid'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Addmobile = () => {
     const [imglink, setimglink] = useState('');
@@ -24,6 +26,7 @@ const Addmobile = () => {
         fingerprint: '',
         status: '',
         img: '',
+        discount:10,
         description: '',
     });
 
@@ -40,8 +43,19 @@ const Addmobile = () => {
             console.log(mobileDetail);
             setLoadingClass('');
             setLoading(false);
+            toast.success('Item Added Successfully', {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });                
         } catch (e) {
             console.error("Error adding document: ", e);
+            setLoading(false);
         }
 
     }
@@ -72,11 +86,30 @@ const Addmobile = () => {
             || mobileDetail.description === ''
 
         ) {
-            alert('fill all the fields')
+            toast.error('Fill All The Fields', {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
         }
         else if (images === null || images === undefined) {
-            console.log('not selected');
-            window.alert('add at least one image')
+            // console.log('not selected');
+            // window.alert('add at least one image')
+            toast.error('Add at least one image', {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
         }
         else {
             setLoadingClass('loading');
@@ -125,6 +158,18 @@ const Addmobile = () => {
     };
     return (
         <div className='addmobileArea'>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <h5>Add mobile</h5>
             {/* <button onClick={buttonClicked}>click me</button> */}
             <div className="row">
@@ -150,7 +195,7 @@ const Addmobile = () => {
                     <select name="ram" id="" className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, ram: e.target.value })
                     }}>
-                        <option value="xiaomi">Ram (Default 4 GB)</option>
+                        <option value="4">Ram (Default 4 GB)</option>
                         <option value="1">1 GB</option>
                         <option value="2">2 GB</option>
                         <option value="3">3 GB</option>
@@ -179,14 +224,14 @@ const Addmobile = () => {
                     }}></textarea>
                 </div>
                 <div className="col-6">
-                    <input type="text" className='form-control' placeholder='Model (It will be shown up Everywhere)' onChange={(e)=>setMobileDetail({ ...mobileDetail, model: e.target.value})}/>                                        
+                    <input type="text" className='form-control' placeholder='Model (It will be shown up Everywhere)' onChange={(e) => setMobileDetail({ ...mobileDetail, model: e.target.value })} />
                     <input type="number" name='price' placeholder='Price' className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, price: e.target.value })
                     }} />
                     <select name="rom" id="" className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, rom: e.target.value })
                     }}>
-                        <option >Rom (Default 16 GB)</option>
+                        <option value="16">Rom (Default 16 GB)</option>
                         <option value="4">4 GB</option>
                         <option value="8">8 GB</option>
                         <option value="16">16 GB</option>
@@ -209,12 +254,32 @@ const Addmobile = () => {
                         <option value="Slide Mounted">Slide Mounted</option>
                         <option value="In Display">In Display</option>
                     </select>
-                    <select name="userange" id="" className='form-control mt-3' onChange={(e) => {
+                    <select name="userange" id="discount" className='form-control mt-3' onChange={(e) => {
                         setMobileDetail({ ...mobileDetail, status: e.target.value })
                     }}>
                         <option>Status</option>
                         <option value="active">Active</option>
                         <option value="paused">Pause</option>
+                    </select>
+                    <select name="discount" id="discount" className='form-control mt-3'
+                        onChange={(e)=>setMobileDetail({ ...mobileDetail, discount: e.target.value })}
+                    >
+                        <option value="20">Discount (Default 20%)</option>
+                        <option value="20">20%</option>
+                        <option value="25">25%</option>
+                        <option value="30">30%</option>
+                        <option value="35">35%</option>
+                        <option value="40">40%</option>
+                        <option value="45">45%</option>
+                        <option value="50">50%</option>
+                        <option value="55">55%</option>
+                        <option value="60">60%</option>
+                        <option value="65">65%</option>
+                        <option value="70">70%</option>
+                        <option value="75">75%</option>
+                        <option value="80">80%</option>
+                        <option value="85">85%</option>
+                        <option value="90">90%</option>
                     </select>
                     <div className="imgUploadBox">
                         <label htmlFor="fileInput">
@@ -237,7 +302,7 @@ const Addmobile = () => {
                         {
                             loading ? <span>Please Wait</span> : <span>Add this Mobile</span>
                         }
-                        
+
                     </button>
                 </div>
             </div>

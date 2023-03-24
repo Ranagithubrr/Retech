@@ -1,55 +1,97 @@
-.sidebar{
-    width:20%;
-    height:70vh;
-    overflow-y: scroll;
-    // border:1px solid #d3d3d3;
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    overflow-y: scroll;    
     padding-left: 20px;
-    h4{
-        font-size: 20px;        
+    position: fixed;
+    background-color: #fff;
+    top:7rem;
+
+    h4 {
+        font-size: 20px;
     }
-    .mobileBrands{
-        span{
+
+    .mobileBrands {
+        span {
             display: block;
             font-size: 15px;
-            color:#6e6e6e;
+            color: #6e6e6e;
             font-weight: 500;
-            padding:5px 0;
+            padding: 5px 0;
             cursor: pointer;
         }
     }
-    .adminView{
-        h4{
+
+    .adminView {
+        h4 {
             font-size: 17px;
-            color:#4b4b4b;
+            color: #4b4b4b;
             padding-left: 20px;
         }
-        ul{
-            margin:0;
-            padding:0;
-            li{
+
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
                 list-style: none;
-                padding:0px 20px;
+                padding: 0px 20px;
                 display: flex;
                 align-items: center;
-                span{
+
+                span {
                     font-size: 20px;
                     padding-right: 10px;
                 }
-                &:hover{         
-                    background-color: #dfdfdfc4;           
+
+                &:hover {
+                    background-color: #dfdfdfc4;
                     cursor: pointer;
                 }
-                a{
+
+                a {
                     text-decoration: none;
-                    color:#777777;
+                    color: #777777;
                     font-weight: 500;
                     font-size: 15px;
-                    padding:10px 0;
+                    padding: 10px 0;
                     display: block;
-                    width:100%;
-                    height:100%;
+                    width: 100%;
+                    height: 100%;
                 }
             }
         }
     }
+
+    // &&::-webkit-scrollbar {
+    //     width: 10px;
+    // }
+
+    // /* Track */
+    // &&::-webkit-scrollbar-track {
+    //     background: #f1f1f1;
+    // }
+
+    // /* Handle */
+    // &&::-webkit-scrollbar-thumb {
+    //     background: #888;
+    // }
+
+    // /* Handle on hover */
+    // &&::-webkit-scrollbar-thumb:hover {
+    //     background: #555;
+    // }
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
 }

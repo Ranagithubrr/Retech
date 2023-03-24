@@ -18,13 +18,18 @@ const Detailmobile = () => {
 
         const docRef = doc(db, "mobiles", id);
         const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
-            setMobile(docSnap.data().mobileDetail);
-            setLoading(false);
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
+        try {
+            if (docSnap.exists()) {
+                console.log("Document data:", docSnap.data());
+                setMobile(docSnap.data().mobileDetail);
+                setLoading(false);
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }
+        catch (e) {
+            console.log('error');
         }
     }
     const date = new Date();
@@ -40,6 +45,7 @@ const Detailmobile = () => {
         email: '',
         phone: '',
         address: '',
+        price: null,
         time: orderDate
     });
     const [orderplaced, setOrderPlaced] = useState(false);
@@ -55,7 +61,7 @@ const Detailmobile = () => {
             const docReftwo = await addDoc(collection(db, "customers"), {
                 order
             });
-            
+
             console.log("Document written with ID: ", docRef.id);
             setOrderPlaced(true)
             console.log(order);
@@ -63,6 +69,7 @@ const Detailmobile = () => {
             setOrderLoadingclass('')
         } catch (e) {
             console.error("Error adding document: ", e);
+            setOrderLoadingclass('')
         }
 
     }
@@ -89,7 +96,7 @@ const Detailmobile = () => {
     }, []);
     useEffect(() => {
         console.log(mobile);
-        setOrder({ ...order, device: mobile.model + ' - ' + mobile.ram + '/' + mobile.rom })
+        setOrder({ ...order, device: mobile.model + ' - ' + mobile.ram + '/' + mobile.rom, price: mobile.price });
     }, [mobile]);
 
     return (
@@ -117,7 +124,7 @@ const Detailmobile = () => {
                                 <div className="otherPhotos">
                                     {
                                         !loading && mobile.img.map((ele, index) => {
-                                            return <img src={ele} alt="" onClick={() => setMainImgState(index)} />
+                                            return <div><img src={ele} alt="" onClick={() => setMainImgState(index)} className="img-fluid" /></div>
                                         })
                                     }
                                 </div>

@@ -1,4 +1,120 @@
-.emptyOrderDiv{
+.emptyOrderDiv {
     display: block;
-    width:100%;
+    width: 100%;
+}
+
+.printBtnBox{
+    button{
+        margin:10px;
+        border:none;
+        outline: none;
+        background-color: #124D99;
+        color:#f1f1f1;
+        font-weight: 500;
+        font-size: 15px;
+        border-radius: 5px;
+        padding:3px 8px;
+    }
+}
+.orderReceipt {
+    padding: 30px;
+
+    .top {
+        display: flex;
+        justify-content: space-between;
+
+        .logo {
+            width: 10rem;
+        }
+
+        .orderreceipt {
+            border-bottom: 2px solid #ccc;
+        }
+
+        h5 {
+            margin-bottom: 0;
+        }
+
+        p {
+            margin-bottom: 0;
+
+            span {
+                padding-right: 5px;
+            }
+        }
+    }
+
+    .middle {
+        padding-top: 2rem;
+        p{
+            span{
+                font-weight: 500;
+            }
+        }
+        .mobileInfo {
+            padding-top: 2rem;
+
+            div {
+                display: flex;
+                align-items: center;
+
+                h4 {
+                    font-size: 20px;
+                }
+
+                span {
+                    font-size: 20px;
+                    font-weight: 500;
+                    padding-left: 20px;
+                }
+            }
+
+            display: flex;
+            align-items: center;
+            width:70%;
+            margin:0 auto;
+            justify-content: space-between;
+
+            img {
+                height: 60px;
+                width: 60px;
+            }
+        }
+
+        .orderInfoArea {
+            padding-top: 2rem;
+            .orderInfo {
+                display: flex;
+                justify-content: space-between;
+                width: 70%;
+                margin: 0 auto;
+            }
+        }
+
+        .delivery {
+            border-bottom: 1px solid #aaa;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            width: 70%;
+            margin: 0 auto;
+
+            span {
+                font-size: 20px;
+                font-weight: 500;
+            }
+        }
+    }
+    .bottom{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 5rem;
+        div{
+            span{
+                border-top: 1px solid #aaa;
+            }
+        }
+    }
 }

@@ -1,0 +1,36 @@
+.adminDashboard {
+  width: 80%;
+  margin-left: auto;
+  padding: 20px;
+}
+.adminDashboard .adminBoxes {
+  color: #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px 0;
+}
+.adminDashboard .adminBoxes span {
+  font-size: 5rem;
+  font-weight: 500;
+}
+.adminDashboard .adminBoxes h4 {
+  font-size: 15px;
+}
+.adminDashboard .totalMobile {
+  background-color: #37306B;
+}
+.adminDashboard .totalRevenue {
+  background-color: #0A2647;
+}
+.adminDashboard .totalCustomer {
+  background-color: #0F3460;
+}
+.adminDashboard .pendingOrder {
+  background-color: #16003B;
+}
+.adminDashboard .completedOrder {
+  background-color: #064663;
+}/*# sourceMappingURL=AdminDashboard.css.map */

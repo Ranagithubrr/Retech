@@ -1,5 +1,7 @@
 .detailMobileArea {
     width: 80%;
+    margin-left: auto;
+    padding-top: 1rem;
 
     .photoBox {
         .mainPhoto {
@@ -9,7 +11,7 @@
             margin-bottom: 20px;
 
             img {
-                width: 15rem;
+                // width: 15rem;
                 height: 15rem;
                 margin: 0 auto;
                 transition: 0.3s ease-in-out;
@@ -23,10 +25,14 @@
 
         .otherPhotos {
             display: flex;
-
+            // width:80%;
+            height:100px;
+            // box-sizing: border-box;
+            // overflow: hidden;
             img {
                 height: 100px;
-                width: 100px;
+                width:auto;
+                margin:0 auto;
                 cursor: pointer;
             }
         }
@@ -66,7 +72,7 @@
         .detailspans {
             display: block;
             font-size: 16px;
-            padding: 5px 0;
+            padding: 2px 0;
 
             span {
                 font-weight: 500;

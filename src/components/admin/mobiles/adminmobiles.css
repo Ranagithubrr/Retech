@@ -1,5 +1,7 @@
 .adminMobilesArea {
   padding: 20px;
+  width: 80%;
+  margin-left: auto;
 }
 .adminMobilesArea h5 {
   font-size: 18px;

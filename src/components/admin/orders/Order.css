@@ -1,4 +1,99 @@
 .emptyOrderDiv {
   display: block;
   width: 100%;
+}
+
+.printBtnBox button {
+  margin: 10px;
+  border: none;
+  outline: none;
+  background-color: #124D99;
+  color: #f1f1f1;
+  font-weight: 500;
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 3px 8px;
+}
+
+.orderReceipt {
+  padding: 30px;
+}
+.orderReceipt .top {
+  display: flex;
+  justify-content: space-between;
+}
+.orderReceipt .top .logo {
+  width: 10rem;
+}
+.orderReceipt .top .orderreceipt {
+  border-bottom: 2px solid #ccc;
+}
+.orderReceipt .top h5 {
+  margin-bottom: 0;
+}
+.orderReceipt .top p {
+  margin-bottom: 0;
+}
+.orderReceipt .top p span {
+  padding-right: 5px;
+}
+.orderReceipt .middle {
+  padding-top: 2rem;
+}
+.orderReceipt .middle p span {
+  font-weight: 500;
+}
+.orderReceipt .middle .mobileInfo {
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.orderReceipt .middle .mobileInfo div {
+  display: flex;
+  align-items: center;
+}
+.orderReceipt .middle .mobileInfo div h4 {
+  font-size: 20px;
+}
+.orderReceipt .middle .mobileInfo div span {
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 20px;
+}
+.orderReceipt .middle .mobileInfo img {
+  height: 60px;
+  width: 60px;
+}
+.orderReceipt .middle .orderInfoArea {
+  padding-top: 2rem;
+}
+.orderReceipt .middle .orderInfoArea .orderInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+}
+.orderReceipt .middle .delivery {
+  border-bottom: 1px solid #aaa;
+}
+.orderReceipt .middle .total {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+}
+.orderReceipt .middle .total span {
+  font-size: 20px;
+  font-weight: 500;
+}
+.orderReceipt .bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5rem;
+}
+.orderReceipt .bottom div span {
+  border-top: 1px solid #aaa;
 }/*# sourceMappingURL=Order.css.map */

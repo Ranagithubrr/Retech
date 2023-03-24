@@ -7,10 +7,23 @@
     border-radius: 8px;
     overflow: hidden;
     text-align: center;
-
+    position: relative;    
+  .discount{
+    position: absolute;
+    padding:0;
+    left:-5.5rem;
+    top:1.5rem;
+    background-color: crimson;
+    color:#fff;
+    font-weight: 500;
+    width:100%;
+    text-align: center;
+    font-size: 14px;
+    transform: rotate(-45deg);
+  }
   
     img {
-        width: 10rem;
+        // width: 10rem;
         height: 12rem;
     }
     div{
@@ -43,7 +56,7 @@
   
   .emptyDiv{
     height:50vh;
-    width:80vw;
+    width:75vw;
     display: flex;
     flex-direction: column;
     align-items: center;
