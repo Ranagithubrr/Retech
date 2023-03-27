@@ -4,6 +4,8 @@ import { FiCheckSquare, FiTrash2 } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import { db } from '../../../Firebase-config/Firebase-config';
 import MobileImg from '../../../imgs/iphone1.webp';
+import 'react-tooltip/dist/react-tooltip.css';
+import { Tooltip } from 'react-tooltip'
 const Customers = () => {
 
     const [customers, setOrders] = useState({});
@@ -53,6 +55,7 @@ const Customers = () => {
 
     return (
         <div className='adminMobilesArea'>
+            <Tooltip id="my-tooltip" variant="error" />
             <ToastContainer
                 position="bottom-right"
                 autoClose={2000}
@@ -66,28 +69,43 @@ const Customers = () => {
                 theme="light"
             />
             <h5>My Customers</h5>
-            <table>
-                <tr>
-                    <th>Customer Name</th>
-                    <th>Mobile</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Actions</th>
-                </tr>
-                {
-                    !loading &&
-                    customers.map((cus) => {
-                        return <tr>
-                            <td>{cus.order.customername}</td>
-                            <td>{cus.order.device}</td>
-                            <td>{cus.order.email}</td>
-                            <td>{cus.order.address}</td>
-                            <td><span className='deletIcon' onClick={() => DeleteItem(cus.id)}><FiTrash2 /></span> </td>
-                        </tr>
-                    })
-                }
+            {
+                loading ? <div className="spinerBox">
+                    <div class="spinner">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                </div> :
+                    <div className="cutomersTable">
+                        <table>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Actions</th>
+                            </tr>
+                            {
+                                !loading &&
+                                customers.map((cus, index) => {
+                                    return <tr>
+                                        <td><span className='serial'>{index + 1}.</span> {cus.order.customername}</td>
+                                        <td><a href={`tel:${cus.order.phone}`}>{cus.order.phone}</a></td>
+                                        <td><a href={`mailto:${cus.order.email}`}>{cus.order.email}</a></td>
+                                        <td>{cus.order.address}</td>
+                                        <td><span data-tooltip-id="my-tooltip" data-tooltip-content="Delete Customer" className='deletIcon' onClick={() => DeleteItem(cus.id)}><FiTrash2 /></span> </td>
+                                    </tr>
 
-            </table>
+                                })
+                            }
+
+                        </table>
+                    </div>
+            }
+
             {customers.length === 0 &&
                 <div className="emptyDiv">
                     <span className='nomobiles'>OOPS ! You have no Customers yet 😟</span>

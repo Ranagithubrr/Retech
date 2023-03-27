@@ -5,6 +5,8 @@ import mobilePic from '../../imgs/iphone1.webp';
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { db } from '../../Firebase-config/Firebase-config.js';
 import loadingImg from '../../imgs/loading.gif';
+import { toast, ToastContainer } from 'react-toastify';
+import { validate } from 'email-validator';
 
 const Detailmobile = () => {
     const { id } = useParams();
@@ -80,15 +82,73 @@ const Detailmobile = () => {
     const placeOrder = () => {
         if (
             order.customername === ''
-            || order.email === ''
             || order.phone === ''
             || order.address === ''
         ) {
-            alert('fill all the fields')
-        } else {
+            toast.warn('Fill all the fields', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+        else if (order.phone.length < 11 || order.phone.length > 11) {
+            // window.alert('mobile must be 11 carecter');
+            toast.warn('mobile must be 11 carecter', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
+        else if (order.phone.charAt(0) != 0 || order.phone.charAt(1) != 1) {
+            toast.warn('invalid mobile', {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            console.log(order.phone.charAt(0));
+            console.log(order.phone.charAt(1));
+        }
+        else if (order.email.length !== 0) {
+            let isvalid = (validate(order.email));
+            if (!isvalid) {
+                console.log('email is not valid');
+                toast.warn('invalid email', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            } else {
+                setOrderLoading(true);
+                setOrderLoadingclass('loadingOrder')
+                sendDataToDB();
+                console.log('order placed successfully with validated email');
+            }
+        }
+        else {
             setOrderLoading(true);
             setOrderLoadingclass('loadingOrder')
-            sendDataToDB()
+            sendDataToDB();
+            console.log('order placed with out email');
         }
     }
     useEffect(() => {
@@ -101,6 +161,18 @@ const Detailmobile = () => {
 
     return (
         <div className='detailMobileArea'>
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             {
                 loading ? <div className="spinerBox">
                     <div class="spinner">
@@ -170,7 +242,7 @@ const Detailmobile = () => {
                                                         <input type="text" placeholder='Your Name' className='form-control mt-3' value={order.customername} onChange={(e) => setOrder({ ...order, customername: e.target.value })} />
                                                         <input type="email" placeholder='Your Email (optional)' className='form-control mt-3' value={order.email} onChange={(e) => setOrder({ ...order, email: e.target.value })} />
                                                         <input type="text" placeholder='Your Address (Location)' className='form-control mt-3' value={order.address} onChange={(e) => setOrder({ ...order, address: e.target.value })} />
-                                                        <input type="phone" placeholder='Your Phone Number' className='form-control mt-3' value={order.phone} onChange={(e) => setOrder({ ...order, phone: e.target.value })} />
+                                                        <input type="number" placeholder='Your Phone Number' className='form-control mt-3' value={order.phone} onChange={(e) => setOrder({ ...order, phone: e.target.value })} />
                                                         <span><small> ** We will connect to this phone number **</small></span>
                                                     </div> : <div className="thankyou-box">
                                                         <span></span>

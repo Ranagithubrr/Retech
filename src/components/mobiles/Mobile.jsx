@@ -6,14 +6,16 @@ import './mobile.css';
 import { db } from '../../Firebase-config/Firebase-config'
 import { collection, getDocs } from 'firebase/firestore';
 import { MobileContext } from '../../contexts/MobileContext';
+import { AuthContext } from '../../contexts/AuthContexts';
 
 const Mobile = () => {
-    const { mobilelists } = useContext(MobileContext);
-    const { loading } = useContext(MobileContext);   
+    const { mobilelists, filteredmobilelists } = useContext(MobileContext);
+    const { currentUser } = useContext(AuthContext)
+    const { loading } = useContext(MobileContext);
     console.log(loading);
-    console.log(mobilelists);
+    // console.log(mobilelists);
     return (
-        <div className="row">
+        <div className="row">        
             {
                 loading ?
                     <div className="spinerBox">
@@ -25,32 +27,44 @@ const Mobile = () => {
                             <div class="rect5"></div>
                         </div>
                     </div> : (
-                        mobilelists.length === 0 ? <div className="emptyDiv">
-                            <span className='nomobiles'>OOPS ! You have no mobiles yet 😟</span>
-                            <span className='addamobile'>Add one now
-                                <Link to="/add-mobile">
-                                    <span className="icon"><AiOutlinePlusCircle /></span>
-                                </Link>
-                            </span>
-                        </div>
+                        mobilelists.length === 0 ? (
+                            currentUser ? <div className="emptyDiv">
+                                <span className='nomobiles'>OOPS ! You have no mobiles yet 😟</span>
+                                <span className='addamobile'>Add one now
+                                    <Link to="/add-mobile">
+                                        <span className="icon"><AiOutlinePlusCircle /></span>
+                                    </Link>
+                                </span>
+                            </div> : <div className="emptyDiv">
+                                <span className='nomobiles'>OOPS ! There is no mobiles yet 😟</span>
+                            </div>
+                        )
                             :
-                            mobilelists.map((ele) => {
-                                return (
-                                    <div className='col-4 mt-4'>
-                                        <div className="mobileBox">
-                                            <div className="discount">
-                                                <span>{ele.mobileDetail.discount ? ele.mobileDetail.discount : 40}% OFF</span>
+                            (
+                                filteredmobilelists.length === 0 ? <div className="emptyDiv">
+                                    <span className='nomobiles'>OOPS ! No Match 😟</span>
+                                </div> : filteredmobilelists.map((ele) => {
+                                    if (ele.mobileDetail.status !== 'paused') {
+                                        return (
+                                            <div className='col-4 mt-4'>
+                                                <div className="mobileBox">
+                                                    <div className="discount">
+                                                        <span>{ele.mobileDetail.discount ? ele.mobileDetail.discount : 40}% OFF</span>
+                                                    </div>
+                                                    <img src={ele.mobileDetail.img[0]} className="img-fluid" alt="mobile" />
+                                                    <div>
+                                                        <h6>{ele.mobileDetail.model}</h6>
+                                                        <span>৳ {ele.mobileDetail.price}</span>
+                                                    </div>
+                                                    <Link to={`/mobile/${ele.id}`} className='viewMobile'>View this Mobile</Link>
+                                                </div>
                                             </div>
-                                            <img src={ele.mobileDetail.img[0]} className="img-fluid" alt="mobile" />
-                                            <div>
-                                                <h6>{ele.mobileDetail.model}</h6>
-                                                <span>৳ {ele.mobileDetail.price}</span>
-                                            </div>
-                                            <Link to={`/mobile/${ele.id}`} className='viewMobile'>View this Mobile</Link>
-                                        </div>
-                                    </div>
-                                );
-                            })
+                                        );
+                                    }
+
+                                })
+                            )
+
                     )
             }
         </div>
@@ -58,3 +72,17 @@ const Mobile = () => {
 };
 
 export default Mobile;
+
+
+
+
+
+
+{/* <div className="emptyDiv">
+    <span className='nomobiles'>OOPS ! You have no mobiles yet 😟</span>
+    <span className='addamobile'>Add one now
+        <Link to="/add-mobile">
+            <span className="icon"><AiOutlinePlusCircle /></span>
+        </Link>
+    </span>
+</div> */}

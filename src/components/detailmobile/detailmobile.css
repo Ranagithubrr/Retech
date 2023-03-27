@@ -20,6 +20,7 @@
 }
 .detailMobileArea .photoBox .otherPhotos {
   display: flex;
+  justify-content: space-around;
   height: 100px;
 }
 .detailMobileArea .photoBox .otherPhotos img {

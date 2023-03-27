@@ -3,6 +3,36 @@
   width: 80%;
   margin-left: auto;
 }
+.adminMobilesArea .tab-content::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.adminMobilesArea .tab-content::-webkit-scrollbar-thumb {
+  background-color: #124D99;
+  border-radius: 10px;
+  /* outline: 1px solid slategrey; */
+}
+.adminMobilesArea .tab-content {
+  box-sizing: border-box;
+  overflow-x: scroll;
+  height: 68vh;
+}
+.adminMobilesArea #nav-tab {
+  border: none;
+}
+.adminMobilesArea #nav-tab button {
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #777;
+}
+.adminMobilesArea #nav-tab .active {
+  border-bottom: 2px solid #124D99;
+  border-radius: 2px;
+  color: #124D99;
+}
 .adminMobilesArea h5 {
   font-size: 18px;
   font-weight: 500;
@@ -11,7 +41,6 @@
 .adminMobilesArea table {
   border-spacing: 15px;
   padding: 5px 25px;
-  min-width: 70vw;
 }
 .adminMobilesArea table tr:nth-child(even) {
   background-color: #F1F1F1;
@@ -27,9 +56,41 @@
   font-size: 14px;
   font-weight: 500;
 }
+.adminMobilesArea table tr td a {
+  color: #777777;
+  text-decoration: none;
+}
+.adminMobilesArea table tr td:first-child {
+  text-align: left;
+}
+.adminMobilesArea table tr td .serial {
+  font-size: 14px;
+  padding-right: 10px;
+}
 .adminMobilesArea table tr td span {
   font-size: 20px;
   cursor: pointer;
+}
+.adminMobilesArea table tr td .activeStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.adminMobilesArea table tr td .activeStatus .activeIcon {
+  height: 8px;
+  width: 8px;
+  background-color: green;
+  margin-right: 5px;
+  border-radius: 50%;
+  margin-top: 3px;
+}
+.adminMobilesArea table tr td .activeStatus .pauseIcon {
+  height: 8px;
+  width: 8px;
+  background-color: #3f3f3f;
+  margin-right: 5px;
+  border-radius: 50%;
+  margin-top: 3px;
 }
 .adminMobilesArea table tr td .deletIcon {
   color: crimson;
@@ -42,4 +103,36 @@
   height: 40px;
   width: 40px;
   border-radius: 50%;
+}
+.adminMobilesArea .mobileTable {
+  min-width: 100vw;
+  overflow-x: scroll;
+}
+.adminMobilesArea .completedorderdiv {
+  min-width: 75vw;
+  overflow-x: scroll;
+}
+.adminMobilesArea .cutomersTable {
+  min-width: 70vw;
+  overflow-x: scroll;
+  height: 70vh;
+}
+.adminMobilesArea .cutomersTable table {
+  width: 90vw;
+}
+.adminMobilesArea .adminmobileDiv {
+  height: 70vh;
+  overflow-x: hidden;
+}
+.adminMobilesArea .adminmobileDiv table {
+  width: 75vw;
+}
+.adminMobilesArea .cutomersTable::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.adminMobilesArea .cutomersTable::-webkit-scrollbar-thumb {
+  background-color: #124D99;
+  border-radius: 10px;
+  /* outline: 1px solid slategrey; */
 }/*# sourceMappingURL=adminmobiles.css.map */

@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Delicious+Handrawn&family=Kalam:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,300;1,500;1,700&family=Rubik+Bubbles&family=Satisfy&family=Shadows+Into+Light&family=Shantell+Sans:wght@300&display=swap");
 .navbarArea {
-  padding: 30px;
+  padding: 10px 30px;
   position: fixed;
   width: 100vw;
   background-color: #fff;
@@ -7,6 +8,30 @@
 }
 .navbarArea .logoimg {
   width: 12rem;
+}
+.navbarArea .hotDealItems span {
+  font-weight: 500;
+  font-size: 12px;
+  padding: 0 50px;
+  color: #18519B;
+  display: flex;
+  align-items: center;
+}
+.navbarArea .hotDeals {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  font-family: "Kalam", cursive;
+  color: crimson;
+}
+.navbarArea .hotDeals span {
+  color: crimson;
+  font-size: 22px;
+  margin-top: -10px;
+  padding-right: 10px;
 }
 .navbarArea ul {
   margin: 0;

@@ -2,6 +2,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react';
 import { MobileContext } from '../../../contexts/MobileContext';
 import { db } from '../../../Firebase-config/Firebase-config';
+import CountUp from 'react-countup';
 import './AdminDashboard.css';
 const Admindash = () => {
     // total mobile
@@ -51,7 +52,7 @@ const Admindash = () => {
     const [completedOrders, setCompletedOrders] = useState({});
     !loading && console.log(completedOrders);
     !loading && completedOrders.map((ord) => {
-       return totalRevenue = totalRevenue + parseInt(ord.completeOrderData.price)
+        return totalRevenue = totalRevenue + parseInt(ord.completeOrderData.price)
     })
     console.log(totalRevenue);
 
@@ -73,35 +74,36 @@ const Admindash = () => {
     }, []);
 
     return (
-        <div className='adminDashboard'>
+        <div className='adminDashboard'>              
             <div className="row">
                 <div className="col-4">
                     <div className='adminBoxes totalMobile'>
-                        <span>{mobilelists.length ? mobilelists.length : 0}</span>
+                        <span>{mobilelists.length ? <CountUp end={mobilelists.length} duration={2.75} /> : 0}</span>
+                        <span></span>
                         <h4>Total Listed Mobile</h4>
                     </div>
                 </div>
                 <div className="col-8">
                     <div className='adminBoxes totalRevenue'>
-                        <span>{totalRevenue}৳</span>
+                        <span>{<CountUp end={totalRevenue} duration={5} />}৳</span>
                         <h4>Total Revenue</h4>
                     </div>
                 </div>
                 <div className="col-4 mt-3">
                     <div className='adminBoxes totalCustomer'>
-                        <span>{customers.length ? customers.length : 0}</span>
+                        <span>{customers.length ? <CountUp end={customers.length} duration={2.75} /> : 0}</span>
                         <h4>Total Customer</h4>
                     </div>
                 </div>
                 <div className="col-4 mt-3">
                     <div className='adminBoxes pendingOrder'>
-                        <span>{orders.length ? orders.length : 0}</span>
+                        <span>{orders.length ? <CountUp end={orders.length} duration={2.75} /> : 0}</span>
                         <h4>Pending Order</h4>
                     </div>
                 </div>
                 <div className="col-4 mt-3">
                     <div className='adminBoxes completedOrder'>
-                        <span>{completedOrders.length ? completedOrders.length : 0}</span>
+                        <span>{completedOrders.length ? <CountUp end={completedOrders.length} duration={2.75} /> : 0}</span>
                         <h4>Completed Order</h4>
                     </div>
                 </div>

@@ -3,13 +3,29 @@ import { Link } from 'react-router-dom';
 import './sidebar.css';
 import { RxDashboard } from 'react-icons/rx';
 import { AiOutlineHome, AiOutlineShoppingCart } from 'react-icons/ai';
+import { MdOutlinePlayArrow } from 'react-icons/md';
 import { CiMobile4 } from 'react-icons/ci';
 import { MdAddCircleOutline } from 'react-icons/md';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { AuthContext } from '../../contexts/AuthContexts';
+import { MobileContext } from '../../contexts/MobileContext';
+
 
 const Sidebar = () => {
-    const {currentUser} = useContext(AuthContext);
+    const { mobilelists, setFilteredMobiles } = useContext(MobileContext);
+    let filteredItems = [];
+    const filterItems = (brand) => {
+        mobilelists.map((ele) => {
+            if (ele.mobileDetail.brand === brand) {
+                console.log(ele);
+                if (ele.mobileDetail.status === 'active') {
+                    filteredItems.push(ele);
+                }
+            };
+        });
+        setFilteredMobiles(filteredItems)
+    }
+    const { currentUser } = useContext(AuthContext);
     return (
         <div className='sidebar'>
             {
@@ -17,20 +33,20 @@ const Sidebar = () => {
                     <div className="userView">
                         <h4>Categories</h4>
                         <div className="mobileBrands">
-                            <span>I-Phone (3)</span>
-                            <span>Xiaomi (10)</span>
-                            <span>Samsung (7)</span>
-                            <span>Oppo (5)</span>
-                            <span>Vivo (9)</span>
-                            <span>Realme (3)</span>
-                            <span>Symphony (4)</span>
-                            <span>Tecno (2)</span>
-                            <span>itel (2)</span>
-                            <span>Infinix(1)</span>
-                            <span>Walton (6)</span>
-                            <span>OnePlus(1)</span>
-                            <span>Motorola(0)</span>
-                            <span>Nokia (0)</span>
+                            <span onClick={() => filterItems('iphone')}><MdOutlinePlayArrow /> I-Phone (3)</span>
+                            <span onClick={() => filterItems('xiaomi')}><MdOutlinePlayArrow /> Xiaomi (10)</span>
+                            <span onClick={() => filterItems('samsung')}><MdOutlinePlayArrow /> Samsung (7)</span>
+                            <span onClick={() => filterItems('oppo')}><MdOutlinePlayArrow /> Oppo (5)</span>
+                            <span onClick={() => filterItems('vivo')}><MdOutlinePlayArrow /> Vivo (9)</span>
+                            <span onClick={() => filterItems('realme')}><MdOutlinePlayArrow /> Realme (3)</span>
+                            <span onClick={() => filterItems('symphony')}><MdOutlinePlayArrow /> Symphony (4)</span>
+                            <span onClick={() => filterItems('techno')}><MdOutlinePlayArrow /> Tecno (2)</span>
+                            <span onClick={() => filterItems('itel')}><MdOutlinePlayArrow /> itel (2)</span>
+                            <span onClick={() => filterItems('infinix')}><MdOutlinePlayArrow /> Infinix(1)</span>
+                            <span onClick={() => filterItems('walton')}><MdOutlinePlayArrow /> Walton (6)</span>
+                            <span onClick={() => filterItems('oneplus')}><MdOutlinePlayArrow /> OnePlus(1)</span>
+                            <span onClick={() => filterItems('motorola')}><MdOutlinePlayArrow /> Motorola(0)</span>
+                            <span onClick={() => filterItems('nokia')}><MdOutlinePlayArrow /> Nokia (0)</span>
                         </div>
                     </div>
                     :

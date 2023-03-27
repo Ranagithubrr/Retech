@@ -5,13 +5,14 @@
   padding-left: 20px;
   position: fixed;
   background-color: #fff;
-  top: 7rem;
+  top: 10rem;
 }
 .sidebar h4 {
   font-size: 20px;
 }
 .sidebar .mobileBrands span {
-  display: block;
+  display: flex;
+  align-items: center;
   font-size: 15px;
   color: #6e6e6e;
   font-weight: 500;

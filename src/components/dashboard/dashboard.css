@@ -38,4 +38,13 @@
   border-radius: 3px;
   padding: 4px 10px;
   margin-left: 10px;
+}
+.mainDashboard .filterarea .clearFilter {
+  background-color: #c7103e;
+  color: #dcdcdc;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 4px 10px;
+  margin-left: 10px;
 }/*# sourceMappingURL=dashboard.css.map */

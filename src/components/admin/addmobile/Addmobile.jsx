@@ -64,6 +64,7 @@ const Addmobile = () => {
         if (imageUploaded) {
             if (mobileDetail.img.length !== 0 || mobileDetail.img !== '') {
                 sendDataToDB();
+                setImageUploaded(false)
             } else {
                 window.alert('select at least one Image')
             }

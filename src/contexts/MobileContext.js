@@ -7,6 +7,7 @@ export const MobileContext = createContext();
 
 export const MobileContextProvider = ({ children }) => {
     const [mobilelists, setMobiles] = useState({});
+    const [filteredmobilelists, setFilteredMobiles] = useState({});
     const [loading, setLoading] = useState(true);
 
     const fetchmobiles = async () => {
@@ -16,8 +17,9 @@ export const MobileContextProvider = ({ children }) => {
                 const mobiledatadb = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setMobiles(mobiledatadb);
+                setFilteredMobiles(mobiledatadb);
                 setLoading(false)
-                console.log(mobilelists);
+                // console.log(mobilelists);
             })
             .catch((err) => {
                 console.log(err);
@@ -28,10 +30,10 @@ export const MobileContextProvider = ({ children }) => {
         fetchmobiles();
     }, [])
     useEffect(() => {
-        console.log(mobilelists);
+        // console.log(mobilelists);
     }, [mobilelists])
     return (
-        <MobileContext.Provider value={{ mobilelists,loading }}>
+        <MobileContext.Provider value={{ mobilelists, loading, setMobiles, filteredmobilelists, setFilteredMobiles }}>
             {children}
         </MobileContext.Provider>
     )

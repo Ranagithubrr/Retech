@@ -9,6 +9,7 @@ import Logo from '../../../imgs/Retech-removebg-preview.png';
 import './Order.css';
 import ReactToPrint from 'react-to-print';
 import { toast, ToastContainer } from 'react-toastify';
+import { Tooltip } from 'react-tooltip';
 
 const Orders = () => {
     const [orders, setOrders] = useState({});
@@ -121,6 +122,9 @@ const Orders = () => {
     }
     return (
         <div className='adminMobilesArea'>
+            <Tooltip id="my-tooltip" variant="success" />
+            <Tooltip id="my-tooltip2" variant="error" />
+            <Tooltip id="my-tooltip3" />
             <ToastContainer
                 position="bottom-right"
                 autoClose={3000}
@@ -151,7 +155,7 @@ const Orders = () => {
                                 <div class="rect5"></div>
                             </div>
                         </div> :
-                            <table>
+                            <table className='mobileTable'>
                                 <tr>
                                     <th></th>
                                     <th>Customer Name</th>
@@ -162,15 +166,15 @@ const Orders = () => {
                                     <th>Actions</th>
                                 </tr>
                                 {
-                                    orders.map((ord) => {
+                                    orders.map((ord, index) => {
                                         return <tr>
-                                            <td><img src={MobileImg} alt="mobileImage" /></td>
+                                            <td><span className='serial'>{index + 1}. </span><img src={MobileImg} alt="mobileImage" /></td>
                                             <td>{ord.order.customername}</td>
                                             <td>{ord.order.phone}</td>
-                                            <td>{ord.order.email}</td>
+                                            <td>{ord.order.email != '' ? ord.order.email : '(email not provided)'}</td>
                                             <td>{ord.order.device}</td>
                                             <td>{ord.order.time}</td>
-                                            <td><span className='completeIcon' onClick={() => completeOrder(ord)}><FiCheckSquare /></span> <span className='deletIcon' onClick={() => DeleteItem(ord.id)}><FiTrash2 /></span> </td>
+                                            <td> <span class="d-inline-block" data-tooltip-id="my-tooltip" data-tooltip-content="Mark Order as Complete"><span className='completeIcon' onClick={() => completeOrder(ord)}><FiCheckSquare /></span></span> <span class="d-inline-block" data-tooltip-id="my-tooltip2" data-tooltip-content="Delete Order"> <span className='deletIcon' onClick={() => DeleteItem(ord.id)}><FiTrash2 /></span> </span> </td>
                                         </tr>
                                     })
                                 }
@@ -193,7 +197,7 @@ const Orders = () => {
                                 <div class="rect5"></div>
                             </div>
                         </div> :
-                            <table>
+                            <table className='completedorderdiv'>
                                 <tr>
                                     <th></th>
                                     <th>Customer Name</th>
@@ -203,14 +207,14 @@ const Orders = () => {
                                     <th>Invoice</th>
                                 </tr>
                                 {
-                                    completedOrders.map((ord) => {
+                                    completedOrders.map((ord, index) => {
                                         return <tr>
-                                            <td><img src={MobileImg} alt="mobileImage" /></td>
+                                            <td><span className='serial'>{index + 1}.</span> <img src={MobileImg} alt="mobileImage" /></td>
                                             <td>{ord.completeOrderData.customername}</td>
                                             <td>{ord.id}</td>
                                             <td>{ord.completeOrderData.device}</td>
                                             <td>{ord.completeOrderData.time}</td>
-                                            <td><span className='deletIcon' onClick={() => InvoiceClicked(ord)} data-toggle="modal" data-target=".bd-example-modal-lg"><MdPictureAsPdf /></span> </td>
+                                            <td><span className='deletIcon' onClick={() => InvoiceClicked(ord)} data-toggle="modal" data-target=".bd-example-modal-lg" data-tooltip-id="my-tooltip3" data-tooltip-content="Print Invoice"><MdPictureAsPdf /></span> </td>
 
                                             {/* modal start */}
                                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
