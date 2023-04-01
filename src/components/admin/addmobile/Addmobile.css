@@ -39,4 +39,10 @@
   font-size: 13px;
   margin-left: 10px;
   margin-top: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .addmobileArea {
+    width: 100%;
+  }
 }/*# sourceMappingURL=Addmobile.css.map */

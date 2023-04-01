@@ -15,6 +15,15 @@
   padding: 3px 8px;
 }
 
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+.closeButton span {
+  font-size: 22px;
+}
+
 .orderReceipt {
   padding: 30px;
 }
@@ -96,4 +105,34 @@
 }
 .orderReceipt .bottom div span {
   border-top: 1px solid #aaa;
+}
+
+@media screen and (max-width: 768px) {
+  .orderReceipt {
+    padding: 20px;
+  }
+  .orderReceipt .top .orderreceipt {
+    display: none;
+  }
+  .orderReceipt .top .logo {
+    width: 8rem;
+  }
+  .orderReceipt .top h5, .orderReceipt .top p {
+    font-size: 14px;
+  }
+  .orderReceipt .middle .mobileInfo {
+    width: 100%;
+  }
+  .orderReceipt .middle .mobileInfo div {
+    font-size: 14px;
+  }
+  .orderReceipt .middle .mobileInfo div h4 {
+    font-size: 15px;
+  }
+  .orderReceipt .middle .orderInfoArea .orderInfo {
+    width: 100%;
+  }
+  .orderReceipt .middle .total {
+    width: 100%;
+  }
 }/*# sourceMappingURL=Order.css.map */

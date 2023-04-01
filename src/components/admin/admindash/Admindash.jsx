@@ -76,32 +76,32 @@ const Admindash = () => {
     return (
         <div className='adminDashboard'>              
             <div className="row">
-                <div className="col-4">
+                <div className="col-12 col-lg-4">
                     <div className='adminBoxes totalMobile'>
                         <span>{mobilelists.length ? <CountUp end={mobilelists.length} duration={2.75} /> : 0}</span>
                         <span></span>
                         <h4>Total Listed Mobile</h4>
                     </div>
                 </div>
-                <div className="col-8">
+                <div className="col-12 col-lg-8 mt-3 mt-md-0">
                     <div className='adminBoxes totalRevenue'>
                         <span>{<CountUp end={totalRevenue} duration={5} />}৳</span>
                         <h4>Total Revenue</h4>
                     </div>
                 </div>
-                <div className="col-4 mt-3">
+                <div className="col-12 col-lg-4 mt-3">
                     <div className='adminBoxes totalCustomer'>
                         <span>{customers.length ? <CountUp end={customers.length} duration={2.75} /> : 0}</span>
                         <h4>Total Customer</h4>
                     </div>
                 </div>
-                <div className="col-4 mt-3">
+                <div className="col-12 col-lg-4 mt-3">
                     <div className='adminBoxes pendingOrder'>
                         <span>{orders.length ? <CountUp end={orders.length} duration={2.75} /> : 0}</span>
                         <h4>Pending Order</h4>
                     </div>
                 </div>
-                <div className="col-4 mt-3">
+                <div className="col-12 col-lg-4 mt-3">
                     <div className='adminBoxes completedOrder'>
                         <span>{completedOrders.length ? <CountUp end={completedOrders.length} duration={2.75} /> : 0}</span>
                         <h4>Completed Order</h4>

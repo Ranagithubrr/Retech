@@ -21,7 +21,7 @@
   transform: rotate(-45deg);
 }
 .mobileBox img {
-  height: 12rem;
+  max-height: 12rem;
 }
 .mobileBox div {
   text-align: left;
@@ -132,5 +132,29 @@
   20% {
     transform: scaleY(1);
     -webkit-transform: scaleY(1);
+  }
+}
+@media screen and (max-width: 768px) {
+  .spinerBox {
+    width: 90vw;
+    margin: 0 auto;
+  }
+  .emptyDiv {
+    width: 80vw;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .mobileBox {
+    width: 85%;
+  }
+  .mobileBox h6 {
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .mobileBox .discount {
+    top: 20px;
+    left: -50px;
   }
 }/*# sourceMappingURL=mobile.css.map */

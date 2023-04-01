@@ -6,14 +6,15 @@ import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../Firebase-config/Firebase-config';
 import { toast, ToastContainer } from 'react-toastify';
 import { Tooltip } from 'react-tooltip';
+import { Link } from 'react-router-dom';
 
 const Adminmobiles = () => {
 
     const [mobiles, setMobiles] = useState({});
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+    const [deleting, setDeleting] = useState(true);
 
     const fetchmobiles = async () => {
-
         await getDocs(collection(db, "mobiles"))
             .then((querySnapshot) => {
                 const mobiledatadb = querySnapshot.docs
@@ -81,39 +82,41 @@ const Adminmobiles = () => {
                         <div class="rect5"></div>
                     </div>
                 </div> :
-                    <div className="adminmobileDiv">
-                        <table>
-                            <tr>
-                                <th></th>
-                                <th>Mobile Name</th>
-                                <th>Status</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Actions</th>
-                            </tr>
-                            {
-                                mobiles.map((mob, index) => {
-                                    return <tr>
-                                        <td> <span className='serial'>{index + 1}.</span> <img src={MobileImg} alt="mobileImage" /></td>
-                                        <td>{mob.mobileDetail.model}</td>
-                                        <td><div className='activeStatus'> {mob.mobileDetail.status === 'active' ? <div className='activeIcon'></div> : <div className='pauseIcon'></div>} {mob.mobileDetail.status}</div></td>
-                                        <td>2</td>
-                                        <td>{mob.mobileDetail.price}</td>
-                                        <td><span data-tooltip-id="my-tooltip3" data-tooltip-content="Edit Mobile"><FiEdit /></span> <span className='deletIcon' data-tooltip-id="my-tooltip2" data-tooltip-content="Delete Mobile" onClick={() => DeleteItem(mob.id)}><FiTrash2 /></span> </td>
+                    mobiles.length === 0 ?
+                        <div className="emptyDiv">
+                            <span className='nomobiles'>OOPS ! No mobiles added yet 😟</span>
+                        </div>
+                        :
+                        <div className="adminmobileDiv">
+                            <div className="mobileTable">
+                                <table>
+                                    <tr>
+                                        <th></th>
+                                        <th>Mobile Name</th>
+                                        <th>Status</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
                                     </tr>
-                                })
-                            }
-                        </table>
-                    </div>
+                                    {
+                                        mobiles.map((mob, index) => {
+                                            return <tr>
+                                                <td> <span className='serial'>{index + 1}.</span> <img src={MobileImg} alt="mobileImage" /></td>
+                                                <td>{mob.mobileDetail.model}</td>
+                                                <td><div className='activeStatus'> {mob.mobileDetail.status === 'active' ? <div className='activeIcon'></div> : <div className='pauseIcon'></div>} {mob.mobileDetail.status}</div></td>
+                                                <td>2</td>
+                                                <td>{mob.mobileDetail.price}</td>
+                                                <td><Link to={`/update-mobile/${mob.id}`} data-tooltip-id="my-tooltip3" data-tooltip-content="Edit Mobile"><FiEdit /></Link> <span className='deletIcon' data-tooltip-id="my-tooltip2" data-tooltip-content="Delete Mobile" onClick={() => DeleteItem(mob.id)}><FiTrash2 /></span> </td>
+                                            </tr>
+                                        })
+                                    }
+                                </table>
+                            </div>
+                        </div>
             }
 
 
-            {/*  ------------    --------------- */}
-            {mobiles.length === 0 &&
-                <div className="emptyDiv">
-                    <span className='nomobiles'>OOPS ! No mobiles added yet 😟</span>
-                </div>
-            }
+
         </div>
 
     );

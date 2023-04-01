@@ -79,6 +79,11 @@ const Customers = () => {
                         <div class="rect5"></div>
                     </div>
                 </div> :
+                customers.length === 0 ?
+                <div className="emptyDiv">
+                    <span className='nomobiles'>Badluck ! You have no customers yet 😟</span>
+                </div>
+                :
                     <div className="cutomersTable">
                         <table>
                             <tr>
@@ -104,13 +109,7 @@ const Customers = () => {
 
                         </table>
                     </div>
-            }
-
-            {customers.length === 0 &&
-                <div className="emptyDiv">
-                    <span className='nomobiles'>OOPS ! You have no Customers yet 😟</span>
-                </div>
-            }
+            }           
         </div>
     );
 };

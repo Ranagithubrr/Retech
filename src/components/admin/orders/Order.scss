@@ -16,8 +16,16 @@
         padding:3px 8px;
     }
 }
+.closeButton{
+    position:absolute;
+    top:0;
+    right: 10px;
+    span{
+        font-size: 22px;
+    }
+}
 .orderReceipt {
-    padding: 30px;
+    padding: 30px;    
 
     .top {
         display: flex;
@@ -114,6 +122,43 @@
         div{
             span{
                 border-top: 1px solid #aaa;
+            }
+        }
+    }
+}
+
+
+@media screen  and (max-width:768px){
+    .orderReceipt{
+        padding:20px;
+        .top{
+            .orderreceipt{
+                display: none;
+            }
+            .logo{
+                width:8rem;
+            }
+            h5,p{
+                font-size: 14px;
+            }
+        }
+        .middle{
+            .mobileInfo{
+                width:100%;
+                div{
+                    font-size: 14px;
+                    h4{
+                        font-size: 15px;
+                    }
+                }
+            }
+            .orderInfoArea {
+                .orderInfo{
+                    width:100%;
+                }
+            }
+            .total{
+                width:100%;
             }
         }
     }

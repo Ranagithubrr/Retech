@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { GrFormClose } from 'react-icons/gr';
+import { FcClearFilters, FcFilledFilter } from 'react-icons/fc';
 import { MobileContext } from '../../contexts/MobileContext';
 import Mobile from '../mobiles/Mobile';
 import './dashboard.css';
-
+import { SidebarContext } from '../../contexts/SidebarContext';
 
 
 const Dasboard = () => {
-    const {  mobilelists,  filteredmobilelists, setFilteredMobiles } = useContext(MobileContext);
-    const [showclearFilter, setShowClearFilter] = useState(false);
+    const { mobilelists, filteredmobilelists, setFilteredMobiles } = useContext(MobileContext);
+    // const [showclearFilter, setShowClearFilter] = useState(false);
+    const { filter, setFilter, showclearFilter, setShowClearFilter } = useContext(SidebarContext);
 
     let filteredItems = [];
 
@@ -25,7 +28,7 @@ const Dasboard = () => {
         // setMobiles([])
         // console.log(mobilelists);
         // console.log(FilterdParams);
-
+        setFilter('');
         console.log(FilterdParams);
         if (FilterdParams.brand === '' && FilterdParams.price === '' && FilterdParams.uses === '') {
             setShowClearFilter(false);
@@ -327,6 +330,7 @@ const Dasboard = () => {
 
     const ClearFilter = () => {
         setFilteredMobiles(mobilelists);
+        setFilter('');
         setFilterdParams({
             brand: '',
             price: '',
@@ -334,23 +338,34 @@ const Dasboard = () => {
         });
         setShowClearFilter(false)
     }
-    useEffect(()=>{
+    useEffect(() => {
         ClearFilter();
-    },[])
+    }, [])
 
     return (
         <div className='mainDashboard'>
-            <div className="filterarea">
+            {showclearFilter && <div className='mainClearFilter' onClick={ClearFilter}><FcClearFilters /></div>}
+            <div className="mainFilterIcon" onClick={() => setFilter('showFilter')}><FcFilledFilter /></div>
+            <div className={`filterarea ${filter}`}>
+                <span className='closeIcon' onClick={() => setFilter('')}><GrFormClose /></span>
                 <h4>Filter :</h4>
                 <div>
                     <span>Brand</span>
                     <select name="mobiles" id="" onChange={(e) => setFilterdParams({ ...FilterdParams, brand: e.target.value })} value={FilterdParams.brand}>
                         <option value=''>Select Brand</option>
-                        <option value="iphone">I Phone</option>
+                        <option value="iphone">I-Phone</option>
                         <option value="xiaomi">Xiaomi</option>
-                        <option value="samsung">samsung</option>
-                        <option value="oppo">oppo</option>
-                        <option value="vivo">vivo</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="oppo">Oppo</option>
+                        <option value="realme">Realme</option>
+                        <option value="symphoney">symphoney</option>
+                        <option value="techno">Techno</option>
+                        <option value="itel">Itel</option>
+                        <option value="infinix">Infinix</option>
+                        <option value="walton">Walton</option>
+                        <option value="motorola">Motorola</option>
+                        <option value="nokia">Nokia</option>
+                        <option value="oneplus">Oneplus</option>
                     </select>
                 </div>
                 <div className="priceBox">
@@ -376,6 +391,7 @@ const Dasboard = () => {
                     </select>
                     <button className='filterBtn' onClick={FilterItems}>Filter Items</button>
                     {showclearFilter && <button className='clearFilter' onClick={ClearFilter}>Clear Filter</button>}
+                    {showclearFilter && <button className='clearFilterForMobile' onClick={ClearFilter}><FcClearFilters /></button>}
                 </div>
             </div>
             <Mobile />

@@ -33,4 +33,10 @@
 }
 .adminDashboard .completedOrder {
   background-color: #064663;
+}
+
+@media screen and (max-width: 768px) {
+  .adminDashboard {
+    width: 100%;
+  }
 }/*# sourceMappingURL=AdminDashboard.css.map */

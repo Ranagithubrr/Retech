@@ -5,16 +5,25 @@ import { RxDashboard } from 'react-icons/rx';
 import { AiOutlineHome, AiOutlineShoppingCart } from 'react-icons/ai';
 import { MdOutlinePlayArrow } from 'react-icons/md';
 import { CiMobile4 } from 'react-icons/ci';
+import { GrFormClose } from 'react-icons/gr';
+import { GoSignOut } from 'react-icons//go';
 import { MdAddCircleOutline } from 'react-icons/md';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { AuthContext } from '../../contexts/AuthContexts';
 import { MobileContext } from '../../contexts/MobileContext';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../Firebase-config/Firebase-config';
+import { SidebarContext } from '../../contexts/SidebarContext';
 
 
 const Sidebar = () => {
-    const { mobilelists, setFilteredMobiles } = useContext(MobileContext);
+    const { mobilelists, setFilteredMobiles } = useContext(MobileContext);  
+    const {sidebar, setSidebar,setFilter, setShowClearFilter} = useContext(SidebarContext);  
     let filteredItems = [];
     const filterItems = (brand) => {
+        setSidebar('');
+        setFilter('');
+        setShowClearFilter(true)
         mobilelists.map((ele) => {
             if (ele.mobileDetail.brand === brand) {
                 console.log(ele);
@@ -26,8 +35,21 @@ const Sidebar = () => {
         setFilteredMobiles(filteredItems)
     }
     const { currentUser } = useContext(AuthContext);
+    const signOutClicked = () => {
+        signOut(auth).then(() => {
+            console.log('signed out');
+        }).catch((error) => {
+            console.log('an error');
+        });
+    }
+    const NavItemsClicked =() =>{
+        setSidebar('');    
+    }
+
+    console.log(sidebar);
     return (
-        <div className='sidebar'>
+        <div className={`sidebar ${sidebar}`}>
+            <span className='closeIcon' onClick={()=>setSidebar('')}><GrFormClose /></span>
             {
                 !currentUser ?
                     <div className="userView">
@@ -53,12 +75,13 @@ const Sidebar = () => {
                     <div className="adminView">
                         <h4>Admin Panel</h4>
                         <ul>
-                            <li><Link to="/"><span><AiOutlineHome /></span> Home</Link></li>
-                            <li><Link to="/dashboard"><span><RxDashboard /></span>  Dashboard</Link></li>
-                            <li><Link to="/mobiles"><span><CiMobile4 /></span> Mobiles</Link></li>
-                            <li><Link to="/add-mobile"><span><MdAddCircleOutline /></span> Add Mobile</Link></li>
-                            <li><Link to="/orders"><span><AiOutlineShoppingCart /></span> Orders</Link></li>
-                            <li><Link to="/customers"><span><HiOutlineUserGroup /></span> My Customers</Link></li>
+                            <li onClick={NavItemsClicked}><Link to="/"><span><AiOutlineHome /></span> Home</Link></li>
+                            <li onClick={NavItemsClicked}><Link to="/dashboard"><span><RxDashboard /></span>  Dashboard</Link></li>
+                            <li onClick={NavItemsClicked}><Link to="/mobiles"><span><CiMobile4 /></span> Mobiles</Link></li>
+                            <li onClick={NavItemsClicked}><Link to="/add-mobile"><span><MdAddCircleOutline /></span> Add Mobile</Link></li>
+                            <li onClick={NavItemsClicked}><Link to="/orders"><span><AiOutlineShoppingCart /></span> Orders</Link></li>
+                            <li onClick={NavItemsClicked}><Link to="/customers"><span><HiOutlineUserGroup /></span> My Customers</Link></li>
+                            <li className='signOutBtn' onClick={signOutClicked}><span className='icon'><GoSignOut /></span><span className='signouttext'> Sign Out </span></li>
                         </ul>
                     </div>
             }

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Dasboard from './components/dashboard/Dasboard';
 import { Routes, Route, useNavigate } from "react-router-dom"
@@ -17,23 +16,9 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './Firebase-config/Firebase-config';
 import { useEffect, useState } from 'react';
 import Protected from './components/admin/protected/Protected';
+import UpdateMobile from './components/admin/updateMobile/UpdateMobile';
 
 function App() {
-  // const navigate = useNavigate();
-  // const [isLogIn, setIsLogIn] = useState(false);
-  // console.log(isLogIn);
-
-  // // useEffect(() => {
-  // //   const unsub = onAuthStateChanged(auth, (user) => {
-  // //     setIsLogIn(user);
-  // //   });
-  // //   return () => {
-  // //     unsub();
-  // //   }
-  // // }, []);
-  // const Redirect = () =>{
-  //   return navigate('/admin')
-  // }
   return (
     <div className='container-fluid'>
       <Routes>
@@ -41,7 +26,10 @@ function App() {
           <Route path="/" element={<Dasboard />} />
           <Route path="/mobile/:id" element={<Detailmobile />} />
           {/* admin routes */}
-          <Route path="/dashboard" element={<Admindash />
+          <Route path="/dashboard" element={
+            <Protected>
+              <Admindash />
+            </Protected>
           } />
           <Route path="/mobiles" element={
             <Protected>
@@ -51,6 +39,11 @@ function App() {
           <Route path="/add-mobile" element={
             <Protected>
               <Addmobile />
+            </Protected>
+          } />
+          <Route path="/update-mobile/:id" element={
+            <Protected>
+              <UpdateMobile />
             </Protected>
           } />
           <Route path="/orders" element={
@@ -63,10 +56,11 @@ function App() {
               <Customers />
             </Protected>
           } />
+          {/* public routes */}
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
         </Route>
 
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
         <Route path="mobile" element={<Mobile />} />
         <Route path="admin" element={<Login />} />
       </Routes>

@@ -15,7 +15,7 @@ const Mobile = () => {
     console.log(loading);
     // console.log(mobilelists);
     return (
-        <div className="row">        
+        <div className="row">
             {
                 loading ?
                     <div className="spinerBox">
@@ -46,12 +46,12 @@ const Mobile = () => {
                                 </div> : filteredmobilelists.map((ele) => {
                                     if (ele.mobileDetail.status !== 'paused') {
                                         return (
-                                            <div className='col-4 mt-4'>
+                                            <div className='col-6 col-lg-4 mt-4'>
                                                 <div className="mobileBox">
                                                     <div className="discount">
                                                         <span>{ele.mobileDetail.discount ? ele.mobileDetail.discount : 40}% OFF</span>
                                                     </div>
-                                                    <img src={ele.mobileDetail.img[0]} className="img-fluid" alt="mobile" />
+                                                    <img src={ele.mobileDetail.img[0]} className="img-fluid" alt="mobile" />                                                    
                                                     <div>
                                                         <h6>{ele.mobileDetail.model}</h6>
                                                         <span>৳ {ele.mobileDetail.price}</span>

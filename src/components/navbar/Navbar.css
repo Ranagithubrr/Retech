@@ -9,6 +9,9 @@
 .navbarArea .logoimg {
   width: 12rem;
 }
+.navbarArea .barIcon {
+  display: none;
+}
 .navbarArea .hotDealItems span {
   font-weight: 500;
   font-size: 12px;
@@ -55,14 +58,36 @@
   float: right;
 }
 .navbarArea .callNow span {
-  font-size: 22px;
+  font-size: 16px;
   padding-right: 10px;
 }
 .navbarArea .signOutBtn {
-  border: 1px solid #c7c7c7;
+  color: crimson;
   border-radius: 5px;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 2px 10px;
-  margin-left: 10px;
+  font-size: 22px;
+  padding: 0px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .navbarArea ul {
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 10px;
+  }
+  .navbarArea .callNow {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .navbarArea .callUsText {
+    display: none;
+  }
+  .navbarArea .barIcon {
+    font-size: 25px;
+    font-weight: 600;
+    padding-right: 10px;
+    color: #18519B;
+    display: block;
+  }
 }/*# sourceMappingURL=Navbar.css.map */

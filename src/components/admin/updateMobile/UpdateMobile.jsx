@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import './Addmobile.css';
 import { AiOutlinePlusCircle } from 'react-icons/ai'
-import { addDoc, collection, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db, storage } from '../../../Firebase-config/Firebase-config';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { v4 } from 'uuid'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const Addmobile = () => {
+const UpdateMobile = () => {
+    const navigate = useNavigate();
+
+
+    const { id } = useParams();
+    // console.log('id is:', id);
     const [imglink, setimglink] = useState('');
     const [loading, setLoading] = useState(false)
     const [loadingClass, setLoadingClass] = useState('');
-    const [imageUploaded, setImageUploaded] = useState(false);
-    const [mobileDetail, setMobileDetail] = useState({
+    const [mobile, setMobile] = useState({});
+
+
+    const [mobileDetail, setUpdatedData] = useState({
         brand: '',
         model: '',
         userange: '',
-        price: '',
+        price: null,
         ram: 4,
         rom: 16,
-        frontCamera: '',
-        rearCamera: '',
+        frontCamera: null,
+        rearCamera: null,
         condition: '',
         fingerprint: '',
         status: '',
@@ -30,150 +37,106 @@ const Addmobile = () => {
         description: '',
     });
 
-    const [images, setImages] = useState(null);
-
-    const maxImages = 5;
-
-    const sendDataToDB = async () => {
+    const loadMobileData = async () => {
+        const docRef = doc(db, "mobiles", id);
+        const docSnap = await getDoc(docRef);
         try {
-            const docRef = await addDoc(collection(db, "mobiles"), {
-                mobileDetail
-            });
-            console.log("Document written with ID: ", docRef.id);
-            console.log(mobileDetail);
-            setLoadingClass('');
-            setLoading(false);
-            toast.success('Item Added Successfully', {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-            setMobileDetail({
-                brand: '',
-                model: '',
-                userange: '',
-                price: '',
-                ram: 4,
-                rom: 16,
-                frontCamera: '',
-                rearCamera: '',
-                condition: '',
-                fingerprint: '',
-                status: '',
-                img: '',
-                discount: 10,
-                description: '',
-            });
-            setImages(null)
-        } catch (e) {
-            console.error("Error adding document: ", e);
-            setLoading(false);
-        }
-
-    }
-
-    useEffect(() => {
-        if (imageUploaded) {
-            if (mobileDetail.img.length !== 0 || mobileDetail.img !== '') {
-                sendDataToDB();
-                setImageUploaded(false)
+            if (docSnap.exists()) {
+                console.log("Document data:", docSnap.data());
+                setMobile(docSnap.data().mobileDetail);
+                setLoading(false);
             } else {
-                window.alert('select at least one Image')
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
             }
         }
-    }, [mobileDetail]);
-
-    const Submitclicked = async (e) => {
-        console.log(mobileDetail);
-        if (
-            mobileDetail.brand === ''
-            || mobileDetail.model === ''
-            || mobileDetail.userange === ''
-            || mobileDetail.price == ''
-            || mobileDetail.ram === ''
-            || mobileDetail.rom === ''
-            || mobileDetail.frontCamera === ''
-            || mobileDetail.condition === ''
-            || mobileDetail.fingerprint === ''
-            || mobileDetail.status === ''
-            || mobileDetail.description === ''
-
-        ) {
-            toast.error('Fill All The Fields', {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-        }
-        else if (images === null || images === undefined) {
-            // console.log('not selected');
-            // window.alert('add at least one image')
-            toast.error('Add at least one image', {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-        }
-        else {
-            setLoadingClass('loading');
-            setLoading(true)
-            e.preventDefault();
-            console.log(images);
-
-
-            // Upload each image in the array to storage and get download URL
-            const promises = [];
-            const downloadURLs = [];
-            for (let i = 0; i < images.length && i < maxImages; i++) {
-                const image = images[i];
-                const storageRef = ref(storage, `images/${image.name}${v4()}`);
-                const uploadTask = uploadBytesResumable(storageRef, image);
-                const promise = new Promise((resolve, reject) => {
-                    uploadTask.on('state_changed',
-                        (snapshot) => {
-                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                            console.log(`Upload ${i + 1} is ` + progress + '% done');
-                        },
-                        (error) => {
-                            console.log(`Error in Upload ${i + 1}`);
-                            reject(error);
-                        },
-                        () => {
-                            getDownloadURL(uploadTask.snapshot.ref)
-                                .then((downloadURL) => {
-                                    if (downloadURL) {
-                                        downloadURLs.push(downloadURL);
-                                    }
-                                    resolve(downloadURL);
-                                })
-                        }
-                    );
-                });
-                promises.push(promise);
-            }
-
-            // Wait for all uploads to finish and update the mobileDetail with the download URLs
-            Promise.all(promises).then(() => {
-                setMobileDetail({ ...mobileDetail, img: downloadURLs });
-                setImageUploaded(true);
-            });
+        catch (e) {
+            console.log('error');
         }
     };
+
+    useEffect(() => {
+        loadMobileData();
+    }, []);
+    useEffect(() => {
+        console.log(loading);
+    }, [loading]);
+    useEffect(() => {
+        if (!loading) {
+            setUpdatedData({
+                brand: mobile.brand,
+                model: mobile.model,
+                userange: mobile.userange,
+                price: mobile.price,
+                ram: mobile.ram,
+                rom: mobile.rom,
+                frontCamera: mobile.frontCamera,
+                rearCamera: mobile.rearCamera,
+                condition: mobile.condition,
+                fingerprint: mobile.fingerprint,
+                status: mobile.status,
+                img: mobile.img,
+                discount: mobile.discount,
+                description: mobile.description,
+            });
+            console.log(mobile);
+            console.log(mobileDetail);
+        }
+    }, [mobile]);
+
+    const Submitclicked = async (e) => {
+        if (
+            mobile.brand === mobileDetail.brand &&
+            mobile.model === mobileDetail.model &&
+            mobile.userange === mobileDetail.userange &&
+            mobile.price === mobileDetail.price &&
+            mobile.ram === mobileDetail.ram &&
+            mobile.rom === mobileDetail.rom &&
+            mobile.frontCamera === mobileDetail.frontCamera &&
+            mobile.rearCamera === mobileDetail.rearCamera &&
+            mobile.condition === mobileDetail.condition &&
+            mobile.fingerprint === mobileDetail.fingerprint &&
+            mobile.status === mobileDetail.status &&
+            mobile.img === mobileDetail.img &&
+            mobile.discount === mobileDetail.discount &&
+            mobile.description === mobileDetail.description
+        ) {
+            toast.error('Nothing Changed', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+
+        }
+        else {
+            try {
+                console.log(mobileDetail.discount);
+                const mobref = doc(db, 'mobiles', id);
+
+                updateDoc(mobref, { mobileDetail });
+                toast.success('Data Updated Successfully', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+                
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    };
+    // !loading && console.log(mobileDetail.model);
     return (
         <div className='addmobileArea'>
             <ToastContainer
@@ -188,34 +151,25 @@ const Addmobile = () => {
                 pauseOnHover
                 theme="light"
             />
-            <h5>Add mobile</h5>
+            <h5>Update mobile</h5>
             {/* <button onClick={buttonClicked}>click me</button> */}
             <div className="row">
                 <div className="col-12 col-lg-6">
                     <select name="mobilename" id="" className='form-control' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, brand: e.target.value })
+                        setUpdatedData({ ...mobileDetail, brand: e.target.value })
                     }}
-                    value={mobileDetail.brand}
+                        value={mobileDetail.brand}
                     >
                         <option >Brand</option>
-                        <option value="iphone">I-Phone</option>
                         <option value="xiaomi">Xiaomi</option>
+                        <option value="iphone">I-Phone</option>
                         <option value="samsung">Samsung</option>
                         <option value="oppo">Oppo</option>
-                        <option value="realme">Realme</option>
-                        <option value="symphoney">symphoney</option>
-                        <option value="techno">Techno</option>
-                        <option value="itel">Itel</option>
-                        <option value="infinix">Infinix</option>
-                        <option value="walton">Walton</option>
-                        <option value="motorola">Motorola</option>
-                        <option value="nokia">Nokia</option>
-                        <option value="oneplus">Oneplus</option>
                     </select>
                     <select name="userange" id="" className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, userange: e.target.value })
+                        setUpdatedData({ ...mobileDetail, userange: e.target.value })
                     }}
-                    value={mobileDetail.userange}
+                        value={mobileDetail.userange}
                     >
                         <option >Usage</option>
                         <option value="1 Month Only">Under 1 Month</option>
@@ -224,9 +178,9 @@ const Addmobile = () => {
                         <option value="Over 1 Year Only">Over 1 Year</option>
                     </select>
                     <select name="ram" id="" className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, ram: e.target.value })
+                        setUpdatedData({ ...mobileDetail, ram: e.target.value })
                     }}
-                    value={mobileDetail.ram}
+                        value={mobileDetail.ram}
                     >
                         <option value="4">Ram (Default 4 GB)</option>
                         <option value="1">1 GB</option>
@@ -239,14 +193,14 @@ const Addmobile = () => {
                         <option value="16">16 GB</option>
                     </select>
                     <input type="number" name='frontcamera' placeholder='Front Camera (MP)' className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, frontCamera: e.target.value })
-                    }} 
-                    value={mobileDetail.frontCamera}
+                        setUpdatedData({ ...mobileDetail, frontCamera: e.target.value })
+                    }}
+                        value={mobileDetail.frontCamera}
                     />
                     <select name="condition" id="" className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, condition: e.target.value })
+                        setUpdatedData({ ...mobileDetail, condition: e.target.value })
                     }}
-                    value={mobileDetail.condition}
+                        value={mobileDetail.condition}
                     >
                         <option>Condition</option>
                         <option value="New">New</option>
@@ -257,16 +211,16 @@ const Addmobile = () => {
                         <option value="Bad Condition">Bad Condition</option>
                     </select>
                     <textarea name="description" id="" cols="30" rows="10" placeholder='Description' className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, description: e.target.value })
+                        setUpdatedData({ ...mobileDetail, description: e.target.value })
                     }} value={mobileDetail.description}></textarea>
                 </div>
                 <div className="col-12 col-lg-6 mt-3 mt-md-0">
-                    <input type="text" className='form-control' placeholder='Model (It will be shown up Everywhere)' onChange={(e) => setMobileDetail({ ...mobileDetail, model: e.target.value })} value={mobileDetail.model}/>
+                    <input type="text" className='form-control' placeholder='Model (It will be shown up Everywhere)' onChange={(e) => setUpdatedData({ ...mobileDetail, model: e.target.value })} value={mobileDetail.model} />
                     <input type="number" name='price' placeholder='Price' className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, price: e.target.value })
-                    }} value={mobileDetail.price}/>
+                        setUpdatedData({ ...mobileDetail, price: e.target.value })
+                    }} value={mobileDetail.price} />
                     <select name="rom" id="" className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, rom: e.target.value })
+                        setUpdatedData({ ...mobileDetail, rom: e.target.value })
                     }} value={mobileDetail.rom}>
                         <option value="16">Rom (Default 16 GB)</option>
                         <option value="4">4 GB</option>
@@ -280,10 +234,10 @@ const Addmobile = () => {
                         <option value="1024">1024 GB</option>
                     </select>
                     <input type="number" name='rearcamera' placeholder='Rear Camera (MP)' className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, rearCamera: e.target.value })
-                    }} value={mobileDetail.rearCamera}/>
+                        setUpdatedData({ ...mobileDetail, rearCamera: e.target.value })
+                    }} value={mobileDetail.rearCamera} />
                     <select name="fingerprint" id="" className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, fingerprint: e.target.value })
+                        setUpdatedData({ ...mobileDetail, fingerprint: e.target.value })
                     }} value={mobileDetail.fingerprint}>
                         <option >Fingerprint</option>
                         <option value="No Fingerprint">No Fingerprint</option>
@@ -292,14 +246,14 @@ const Addmobile = () => {
                         <option value="In Display">In Display</option>
                     </select>
                     <select name="userange" id="discount" className='form-control mt-3' onChange={(e) => {
-                        setMobileDetail({ ...mobileDetail, status: e.target.value })
+                        setUpdatedData({ ...mobileDetail, status: e.target.value })
                     }} value={mobileDetail.status}>
                         <option>Status</option>
                         <option value="active">Active</option>
                         <option value="paused">Pause</option>
                     </select>
                     <select name="discount" id="discount" className='form-control mt-3'
-                        onChange={(e) => setMobileDetail({ ...mobileDetail, discount: e.target.value })}
+                        onChange={(e) => setUpdatedData({ ...mobileDetail, discount: e.target.value })}
                         value={mobileDetail.discount}
                     >
                         <option value="20">Discount (Default 20%)</option>
@@ -319,13 +273,6 @@ const Addmobile = () => {
                         <option value="85">85%</option>
                         <option value="90">90%</option>
                     </select>
-                    <div className="imgUploadBox">
-                        <label htmlFor="fileInput">
-                            <span className="inputImagesIcon"><AiOutlinePlusCircle /></span>
-                        </label>
-                        <input type="file" id='fileInput' multiple onChange={(e) => setImages(e.target.files)}/>
-                        <span className='selectFiveText'>Select Up to 5 images</span>
-                    </div>
                     <button className={`addmobileBtn ${loadingClass}`} onClick={Submitclicked}>
                         {
                             loading && <div class="sk-chase">
@@ -338,7 +285,7 @@ const Addmobile = () => {
                             </div>
                         }
                         {
-                            loading ? <span>Please Wait</span> : <span>Add this Mobile</span>
+                            loading ? <span>Please Wait</span> : <span>Update Mobile</span>
                         }
 
                     </button>
@@ -348,4 +295,4 @@ const Addmobile = () => {
     );
 };
 
-export default Addmobile;
+export default UpdateMobile;

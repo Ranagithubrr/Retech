@@ -15,16 +15,14 @@ const Detailmobile = () => {
     const [mainImgState, setMainImgState] = useState(0);
 
     // order info
-
     const loadMobileData = async () => {
-
         const docRef = doc(db, "mobiles", id);
         const docSnap = await getDoc(docRef);
         try {
             if (docSnap.exists()) {
                 console.log("Document data:", docSnap.data());
                 setMobile(docSnap.data().mobileDetail);
-                setLoading(false);
+                setLoading(false);                
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -185,7 +183,7 @@ const Detailmobile = () => {
                 </div>
                     :
                     <div className='row'>
-                        <div className="col-6">
+                        <div className="col-12 col-md-6">
                             <div className="photoBox">
                                 <div className="mainPhoto">
                                     {
@@ -206,19 +204,19 @@ const Detailmobile = () => {
                                 <p>{mobile.description}</p>
                             </div>
                         </div>
-                        <div className="col-6">
+                        <div className="col-12 col-md-6">
                             <div className="rightDetailBox">
                                 <h4 className='phoneName'>{mobile.model}</h4>
-                                <h5 className='availablity'>Availability: <span>2 In Stock</span></h5>
-                                <span className='detailspans'>Condition: {mobile.condition}</span>
-                                <span className='detailspans'>Cash On Delivery: Yes</span>
-                                <span className='detailspans'>Uses: {mobile.userange}</span>
-                                <span className='detailspans'>Price: ৳<span>{mobile.price} </span>BDT Only</span>
-                                <span className='detailspans'>Storage: {mobile.rom} GB</span>
-                                <span className='detailspans'>Ram: {mobile.ram} GB</span>
-                                <span className='detailspans'>Front-Camera: {mobile.frontCamera} MP</span>
-                                <span className='detailspans'>Rear-Camera: {mobile.rearCamera} MP</span>
-                                <span className='detailspans'>Finger-print: {mobile.fingerprint}</span>
+                                <h5 className='availablity'>Availability: <span className='stocks'>1 In Stock</span></h5>
+                                <span className='detailspans'><span>Condition:</span> <span>{mobile.condition}</span> </span>
+                                <span className='detailspans'><span> Cash On Delivery:</span> <span>Yes</span> </span>
+                                <span className='detailspans'><span> Uses:</span> <span>{mobile.userange}</span></span>
+                                <span className='detailspans'><span> Price: </span> <span> ৳ {mobile.price}-/ BDT Only</span></span>
+                                <span className='detailspans'><span>Ram:</span> <span> {mobile.ram} GB</span></span>
+                                <span className='detailspans'><span> Storage:</span> <span> {mobile.rom} GB</span></span>
+                                <span className='detailspans'><span>Front-Camera:</span>  <span>{mobile.frontCamera} MP</span></span>
+                                <span className='detailspans'><span>Rear-Camera:</span> <span>{mobile.rearCamera} MP</span></span>
+                                <span className='detailspans'><span>Finger-print:</span>  <span>{mobile.fingerprint}</span></span>
 
                                 <button type="button" class="orderBtn" data-toggle="modal" data-target="#exampleModalCenter">
                                     Order it Now

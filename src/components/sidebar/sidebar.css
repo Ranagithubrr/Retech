@@ -5,7 +5,10 @@
   padding-left: 20px;
   position: fixed;
   background-color: #fff;
-  top: 10rem;
+  top: 8rem;
+}
+.sidebar .closeIcon {
+  display: none;
 }
 .sidebar h4 {
   font-size: 20px;
@@ -52,6 +55,22 @@
   width: 100%;
   height: 100%;
 }
+.sidebar .adminView ul .signOutBtn {
+  list-style: none;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .adminView ul .signOutBtn span {
+  padding: 10px 0;
+  color: #777777;
+  font-weight: 500;
+  font-size: 15px;
+}
+.sidebar .adminView ul .signOutBtn .icon {
+  font-size: 20px;
+  padding-right: 15px;
+}
 
 .sidebar::-webkit-scrollbar {
   width: 5px;
@@ -64,4 +83,29 @@
 .sidebar::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    transition: 0.3s ease-in-out;
+    top: 0;
+    left: 0;
+    width: 70vw;
+    background-color: #fff;
+    margin-left: -100vw;
+    z-index: 100;
+    padding-top: 50px;
+  }
+  .sidebar .closeIcon {
+    position: absolute;
+    display: block;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  .showSideBar {
+    margin-left: 0;
+  }
 }/*# sourceMappingURL=sidebar.css.map */

@@ -104,10 +104,6 @@
   width: 40px;
   border-radius: 50%;
 }
-.adminMobilesArea .mobileTable {
-  min-width: 100vw;
-  overflow-x: scroll;
-}
 .adminMobilesArea .completedorderdiv {
   min-width: 75vw;
   overflow-x: scroll;
@@ -124,8 +120,15 @@
   height: 70vh;
   overflow-x: hidden;
 }
-.adminMobilesArea .adminmobileDiv table {
+.adminMobilesArea .adminmobileDiv .mobileTable {
+  height: 68vh;
+  overflow-x: hidden;
+}
+.adminMobilesArea .adminmobileDiv .mobileTable table {
   width: 75vw;
+}
+.adminMobilesArea .adminmobileDiv .newOrderTable {
+  min-width: 120vw !important;
 }
 .adminMobilesArea .cutomersTable::-webkit-scrollbar {
   width: 10px;
@@ -135,4 +138,43 @@
   background-color: #124D99;
   border-radius: 10px;
   /* outline: 1px solid slategrey; */
+}
+
+@media screen and (max-width: 768px) {
+  .adminMobilesArea {
+    width: 100%;
+  }
+  .adminMobilesArea .mobileTable {
+    min-width: 300vw;
+  }
+  .adminMobilesArea .completedorderdiv {
+    min-width: 260vw;
+  }
+  .adminMobilesArea .cutomersTable {
+    width: 100vw;
+  }
+  .adminMobilesArea .cutomersTable table {
+    min-width: 300vw;
+  }
+  .adminMobilesArea .adminmobileDiv .mobileTable {
+    box-sizing: border-box;
+    overflow-x: scroll;
+    min-width: initial;
+    height: 70vh;
+  }
+  .adminMobilesArea .adminmobileDiv .mobileTable table {
+    min-width: 200vw;
+  }
+  .adminMobilesArea .adminmobileDiv .mobileTable::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .adminMobilesArea .adminmobileDiv .mobileTable::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3019607843);
+  }
+  .adminMobilesArea .adminmobileDiv .mobileTable::-webkit-scrollbar-thumb {
+    background-color: #124D99;
+    border-radius: 10px;
+    /* outline: 1px solid slategrey; */
+  }
 }/*# sourceMappingURL=adminmobiles.css.map */

@@ -1,7 +1,7 @@
 .adminLogin {
     height: 100vh;
     width: 100vw;
-    background-image: url('../imgs/loginbd.jpg');    
+    background-image: url('../imgs/loginbd.jpg');
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +29,7 @@
 
         .rightArea {
             height: 100%;
-            width:50%;
+            width: 50%;
             display: flex;
             align-items: center;
             flex-direction: column;
@@ -44,40 +44,62 @@
             .inputBoxes {
                 width: 100%;
                 margin: 10px auto;
-                .inputs{
+
+                .inputs {
                     position: relative;
+
                     input {
                         background-color: #F9FAFE;
                         border: 1px solid #c9c9c9;
-                        width:100%;
-                        margin:5px 0;
-                        border:none;
+                        width: 100%;
+                        margin: 5px 0;
+                        border: none;
                         outline: none;
                         border-radius: 3px;
-                        padding:5px;
+                        padding: 5px;
                         font-size: 14px;
-                    }                    
-                    .hideSeeIcon{
+                    }
+
+                    .hideSeeIcon {
                         position: absolute;
-                        right:10px;
-                        top:50%;
+                        right: 10px;
+                        top: 50%;
                         cursor: pointer;
-                        color:#6e6e6e;
+                        color: #6e6e6e;
                         transform: translateY(-50%);
                     }
                 }
-                
-                button{
+
+                button {
                     background-color: #08CCFF;
-                    color:#F9FAFE;
+                    color: #F9FAFE;
                     font-weight: 500;
                     font-size: 18px;
-                    width:100%;
-                    border:none;
-                    outline:none;
-                    margin:10px 0;
+                    width: 100%;
+                    border: none;
+                    outline: none;
+                    margin: 10px 0;
                     border-radius: 5px;
-                    padding:3px 0;
+                    padding: 3px 0;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .adminLogin {        
+        .loginArea {
+            width: 80vw;
+            height:40vh;
+            .rightArea{
+                width:80%;
+                .inputBoxes{
+                    .inputs{
+                        input{
+                            padding:8px 5px;
+                        }
+                    }
                 }
             }
         }

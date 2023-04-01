@@ -3,6 +3,12 @@
   margin-left: auto;
   padding: 2rem 0;
 }
+.mainDashboard .mainFilterIcon {
+  display: none;
+}
+.mainDashboard .mainClearFilter {
+  display: none;
+}
 .mainDashboard .filterarea {
   position: fixed;
   width: 80%;
@@ -14,6 +20,9 @@
   align-items: center;
   padding-bottom: 20px;
   padding-left: 50px;
+}
+.mainDashboard .filterarea .closeIcon {
+  display: none;
 }
 .mainDashboard .filterarea h4 {
   font-size: 20px;
@@ -47,4 +56,85 @@
   border-radius: 3px;
   padding: 4px 10px;
   margin-left: 10px;
+}
+.mainDashboard .filterarea .clearFilterForMobile {
+  background-color: transparent;
+  color: #c7103e;
+  font-size: 24px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  padding: 4px 10px;
+  margin-left: 10px;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .mainDashboard {
+    width: 100%;
+    padding-top: 0;
+  }
+  .mainDashboard .mainFilterIcon {
+    display: block;
+    position: fixed;
+    top: 16%;
+    right: 0;
+    background-color: #124D99;
+    font-size: 22px;
+    padding: 5px 10px;
+    border-radius: 5px 0 0 5px;
+    z-index: 5;
+  }
+  .mainDashboard .mainClearFilter {
+    display: block;
+    position: fixed;
+    top: 16%;
+    right: 10%;
+    font-size: 22px;
+    padding: 5px 10px;
+    border-radius: 5px 0 0 5px;
+    z-index: 5;
+  }
+  .mainDashboard .filterarea {
+    width: 70vw;
+    height: 100vh;
+    background-color: #fff;
+    top: 0;
+    right: 0;
+    margin-right: -100vw;
+    display: initial;
+    padding-top: 7rem;
+    z-index: 6;
+  }
+  .mainDashboard .filterarea div {
+    padding-right: 20px;
+  }
+  .mainDashboard .filterarea div span {
+    display: none;
+  }
+  .mainDashboard .filterarea div select {
+    width: 100%;
+    height: 30px;
+    margin: 10px 0;
+  }
+  .mainDashboard .filterarea .filterBtn {
+    margin-left: 0;
+  }
+  .mainDashboard .filterarea .closeIcon {
+    font-size: 28px;
+    font-weight: 600;
+    position: absolute;
+    top: 30px;
+    display: block;
+    left: 30px;
+  }
+  .mainDashboard .filterarea .clearFilterForMobile {
+    display: inline-block;
+  }
+  .mainDashboard .filterarea .clearFilter {
+    display: none;
+  }
+  .mainDashboard .showFilter {
+    margin-right: 0;
+  }
 }/*# sourceMappingURL=dashboard.css.map */

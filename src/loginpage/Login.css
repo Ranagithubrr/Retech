@@ -74,4 +74,17 @@
   margin: 10px 0;
   border-radius: 5px;
   padding: 3px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .adminLogin .loginArea {
+    width: 80vw;
+    height: 40vh;
+  }
+  .adminLogin .loginArea .rightArea {
+    width: 80%;
+  }
+  .adminLogin .loginArea .rightArea .inputBoxes .inputs input {
+    padding: 8px 5px;
+  }
 }/*# sourceMappingURL=Login.css.map */

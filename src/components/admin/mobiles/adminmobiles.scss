@@ -77,14 +77,17 @@
                 text-align: center;
                 color: #777777;
                 font-size: 14px;
-                font-weight: 500;  
-                a{
-                    color:#777777;
+                font-weight: 500;
+
+                a {
+                    color: #777777;
                     text-decoration: none;
-                } 
-                &:first-child{
+                }
+
+                &:first-child {
                     text-align: left;
-                }             
+                }
+
                 .serial {
                     font-size: 14px;
                     padding-right: 10px;
@@ -142,10 +145,7 @@
         }
     }
 
-    .mobileTable {
-        min-width: 100vw;
-        overflow-x: scroll;
-    }
+
 
     .completedorderdiv {
         min-width: 75vw;
@@ -158,7 +158,7 @@
         height: 70vh;
 
         table {
-            width: 90vw;            
+            width: 90vw;
         }
     }
 
@@ -166,9 +166,16 @@
         height: 70vh;
         overflow-x: hidden;
 
-        table {
-            width: 75vw;
-        }
+        .mobileTable {   
+            height:68vh;            
+            overflow-x: hidden;
+            table {
+                width: 75vw;
+            }
+        }     
+        .newOrderTable{
+            min-width:120vw !important;            
+        }       
     }
 
     .cutomersTable::-webkit-scrollbar {
@@ -184,5 +191,58 @@
         background-color: #124D99;
         border-radius: 10px;
         /* outline: 1px solid slategrey; */
+    }
+}
+
+
+@media screen and (max-width:768px) {
+    .adminMobilesArea {
+        width: 100%;
+
+        .mobileTable {
+            min-width: 300vw;
+        }
+
+        .completedorderdiv {
+            min-width: 260vw;
+        }
+
+        .cutomersTable {
+            width: 100vw;
+
+            table {
+                min-width: 300vw;
+            }
+        }
+
+        .adminmobileDiv {
+
+            // overflow-x: scroll;
+            .mobileTable {
+                box-sizing: border-box;
+                overflow-x: scroll;
+                min-width: initial;
+                height: 70vh;
+
+                table {
+                    min-width: 200vw;
+                    // overflow-x: scroll;
+                }
+            }
+            .mobileTable::-webkit-scrollbar {
+                width: 10px;
+                height:10px;
+            }
+    
+            .mobileTable::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3019607843);
+            }
+    
+            .mobileTable::-webkit-scrollbar-thumb {
+                background-color: #124D99;
+                border-radius: 10px;
+                /* outline: 1px solid slategrey; */
+            }
+        }
     }
 }

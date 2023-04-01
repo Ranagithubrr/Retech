@@ -155,35 +155,35 @@ const Orders = () => {
                                 <div class="rect5"></div>
                             </div>
                         </div> :
-                            <table className='mobileTable'>
-                                <tr>
-                                    <th></th>
-                                    <th>Customer Name</th>
-                                    <th>Mobile</th>
-                                    <th>Email</th>
-                                    <th>Device Choosen</th>
-                                    <th>Order Placed</th>
-                                    <th>Actions</th>
-                                </tr>
-                                {
-                                    orders.map((ord, index) => {
-                                        return <tr>
-                                            <td><span className='serial'>{index + 1}. </span><img src={MobileImg} alt="mobileImage" /></td>
-                                            <td>{ord.order.customername}</td>
-                                            <td>{ord.order.phone}</td>
-                                            <td>{ord.order.email != '' ? ord.order.email : '(email not provided)'}</td>
-                                            <td>{ord.order.device}</td>
-                                            <td>{ord.order.time}</td>
-                                            <td> <span class="d-inline-block" data-tooltip-id="my-tooltip" data-tooltip-content="Mark Order as Complete"><span className='completeIcon' onClick={() => completeOrder(ord)}><FiCheckSquare /></span></span> <span class="d-inline-block" data-tooltip-id="my-tooltip2" data-tooltip-content="Delete Order"> <span className='deletIcon' onClick={() => DeleteItem(ord.id)}><FiTrash2 /></span> </span> </td>
-                                        </tr>
-                                    })
-                                }
-                            </table>
-                    }
-                    {orders.length === 0 &&
-                        <div className="emptyDiv">
-                            <span className='nomobiles'>Badluck ! You have no new orders yet 😟</span>
-                        </div>
+                            orders.length === 0 ?
+                                <div className="emptyDiv">
+                                    <span className='nomobiles'>Badluck ! You have no new orders yet 😟</span>
+                                </div>
+                                :
+                                <table className='mobileTable newOrderTable'>
+                                    <tr>
+                                        <th></th>
+                                        <th>Customer Name</th>
+                                        <th>Mobile</th>
+                                        <th>Email</th>
+                                        <th>Device Choosen</th>
+                                        <th>Order Placed</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    {
+                                        orders.map((ord, index) => {
+                                            return <tr>
+                                                <td><span className='serial'>{index + 1}. </span><img src={MobileImg} alt="mobileImage" /></td>
+                                                <td>{ord.order.customername}</td>
+                                                <td>{ord.order.phone}</td>
+                                                <td>{ord.order.email != '' ? ord.order.email : '(email not provided)'}</td>
+                                                <td>{ord.order.device}</td>
+                                                <td>{ord.order.time}</td>
+                                                <td> <span class="d-inline-block" data-tooltip-id="my-tooltip" data-tooltip-content="Mark Order as Complete"><span className='completeIcon' onClick={() => completeOrder(ord)}><FiCheckSquare /></span></span> <span class="d-inline-block" data-tooltip-id="my-tooltip2" data-tooltip-content="Delete Order"> <span className='deletIcon' onClick={() => DeleteItem(ord.id)}><FiTrash2 /></span> </span> </td>
+                                            </tr>
+                                        })
+                                    }
+                                </table>
                     }
                 </div>
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
@@ -197,137 +197,140 @@ const Orders = () => {
                                 <div class="rect5"></div>
                             </div>
                         </div> :
-                            <table className='completedorderdiv'>
-                                <tr>
-                                    <th></th>
-                                    <th>Customer Name</th>
-                                    <th>Order ID</th>
-                                    <th>Device Choosen</th>
-                                    <th>Order Placed</th>
-                                    <th>Invoice</th>
-                                </tr>
-                                {
-                                    completedOrders.map((ord, index) => {
-                                        return <tr>
-                                            <td><span className='serial'>{index + 1}.</span> <img src={MobileImg} alt="mobileImage" /></td>
-                                            <td>{ord.completeOrderData.customername}</td>
-                                            <td>{ord.id}</td>
-                                            <td>{ord.completeOrderData.device}</td>
-                                            <td>{ord.completeOrderData.time}</td>
-                                            <td><span className='deletIcon' onClick={() => InvoiceClicked(ord)} data-toggle="modal" data-target=".bd-example-modal-lg" data-tooltip-id="my-tooltip3" data-tooltip-content="Print Invoice"><MdPictureAsPdf /></span> </td>
+                            completedOrders.length === 0 ?
+                                <div className="emptyDiv">
+                                    <span className='nomobiles'>Badluck ! You haven't completed any orders yet 😟</span>
+                                </div>
+                                :
+                                <table className='completedorderdiv'>
+                                    <tr>
+                                        <th></th>
+                                        <th>Customer Name</th>
+                                        <th>Order ID</th>
+                                        <th>Device Choosen</th>
+                                        <th>Order Placed</th>
+                                        <th>Invoice</th>
+                                    </tr>
+                                    {
+                                        completedOrders.map((ord, index) => {
+                                            return <tr>
+                                                <td><span className='serial'>{index + 1}.</span> <img src={MobileImg} alt="mobileImage" /></td>
+                                                <td>{ord.completeOrderData.customername}</td>
+                                                <td>{ord.id}</td>
+                                                <td>{ord.completeOrderData.device}</td>
+                                                <td>{ord.completeOrderData.time}</td>
+                                                <td><span className='deletIcon' onClick={() => InvoiceClicked(ord)} data-toggle="modal" data-target=".bd-example-modal-lg" data-tooltip-id="my-tooltip3" data-tooltip-content="Print Invoice"><MdPictureAsPdf /></span> </td>
 
-                                            {/* modal start */}
-                                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div className='printBtnBox'>
-                                                            <ReactToPrint trigger={() => <button>Print Invoice</button>} content={() => componentRef.current}>
+                                                {/* modal start */}
+                                                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div className='printBtnBox'>
+                                                                <ReactToPrint trigger={() => <button>Print Invoice</button>} content={() => componentRef.current}>
 
-                                                            </ReactToPrint>
+                                                                </ReactToPrint>
 
-                                                        </div>
-                                                        <div className="orderReceipt" ref={componentRef}>
-                                                            <div className="top">
-                                                                <div>
-                                                                    <img src={Logo} className="img-fluid logo" alt="logo here" />
-                                                                </div>
-                                                                <div>
-                                                                    <span className='orderreceipt'>Order Receipt</span>
-                                                                </div>
-                                                                <div>
-                                                                    <h5>Rangpur,Bangladesh</h5>
-                                                                    <p><span><MdCall /></span>01773229167</p>
-                                                                </div>
                                                             </div>
-                                                            <div className="middle">
-                                                                <div>
-                                                                    <h5>Dear, {invoiceData.name}</h5>
-                                                                    <p>Your order has been confirmed. Your order id is <span> #{invoiceData.orderid} </span>. And this is your order invoice. <br /> Thank you for staying with us!</p>
-                                                                </div>
-                                                                <div className="mobileInfo">
+                                                            <button type='button' className='btn close closeButton' data-dismiss="modal" aria-label='Close'>
+                                                                    <span aria-hidden='true'>x</span>
+                                                            </button>
+                                                            <div className="orderReceipt" ref={componentRef}>
+                                                                <div className="top">
                                                                     <div>
-                                                                        <img src={MobileImg} alt="mobilleImg" className='img-fluid' />
-                                                                        <div>
-                                                                            <h4>{invoiceData.device} </h4>
-                                                                        </div>
+                                                                        <img src={Logo} className="img-fluid logo" alt="logo here" />
                                                                     </div>
                                                                     <div>
-                                                                        Qty 1 <span>৳{invoiceData.price}.00/-</span>
+                                                                        <span className='orderreceipt'>Order Receipt</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h5>Rangpur,Bangladesh</h5>
+                                                                        <p><span><MdCall /></span>01773229167</p>
                                                                     </div>
                                                                 </div>
-                                                                <div className="orderInfoArea">
-                                                                    <div className="orderInfo">
+                                                                <div className="middle">
+                                                                    <div>
+                                                                        <h5>Dear, {invoiceData.name}</h5>
+                                                                        <p>Your order has been confirmed. Your order id is <span> #{invoiceData.orderid} </span>. And this is your order invoice. <br /> Thank you for staying with us!</p>
+                                                                    </div>
+                                                                    <div className="mobileInfo">
                                                                         <div>
-                                                                            <span>Order Id</span>
+                                                                            <img src={MobileImg} alt="mobilleImg" className='img-fluid' />
+                                                                            <div>
+                                                                                <h4>{invoiceData.device} </h4>
+                                                                            </div>
                                                                         </div>
                                                                         <div>
-                                                                            <span>#{invoiceData.orderid}</span>
+                                                                            Qty 1 <span>৳{invoiceData.price}.00/-</span>
                                                                         </div>
                                                                     </div>
-                                                                    <div className="orderInfo">
-                                                                        <div>
-                                                                            <span>Order Date</span>
+                                                                    <div className="orderInfoArea">
+                                                                        <div className="orderInfo">
+                                                                            <div>
+                                                                                <span>Order Id</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>#{invoiceData.orderid}</span>
+                                                                            </div>
                                                                         </div>
-                                                                        <div>
-                                                                            <span>{invoiceData.time}</span>
+                                                                        <div className="orderInfo">
+                                                                            <div>
+                                                                                <span>Order Date</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>{invoiceData.time}</span>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div className="orderInfo">
-                                                                        <div>
-                                                                            <span>Subtotal</span>
+                                                                        <div className="orderInfo">
+                                                                            <div>
+                                                                                <span>Subtotal</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>৳{invoiceData.price}.00</span>
+                                                                            </div>
                                                                         </div>
-                                                                        <div>
-                                                                            <span>৳{invoiceData.price}.00</span>
+                                                                        <div className="orderInfo">
+                                                                            <div>
+                                                                                <span>Tax</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>00</span>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div className="orderInfo">
-                                                                        <div>
-                                                                            <span>Tax</span>
+                                                                        <div className="orderInfo delivery">
+                                                                            <div>
+                                                                                <span>Delivery Charge</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>00</span>
+                                                                            </div>
                                                                         </div>
-                                                                        <div>
-                                                                            <span>00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="orderInfo delivery">
-                                                                        <div>
-                                                                            <span>Delivery Charge</span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span>00</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="total">
-                                                                        <div>
-                                                                            <span>Total</span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span>৳{invoiceData.price}.00/-</span>
+                                                                        <div className="total">
+                                                                            <div>
+                                                                                <span>Total</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>৳{invoiceData.price}.00/-</span>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div className="bottom">
-                                                                <div>
-                                                                    <span>Seller's Signature</span>
-                                                                </div>
-                                                                <div>
-                                                                    <span>Buyer's Signature</span>
+                                                                <div className="bottom">
+                                                                    <div>
+                                                                        <span>Seller's Signature</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span>Buyer's Signature</span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            {/* modal ends */}
-                                        </tr>
-                                    })
-                                }
-                            </table>
-                    }
-                    {completedOrders.length === 0 &&
-                        <div className="emptyDiv">
-                            <span className='nomobiles'>Badluck ! You haven't completed any orders yet 😟</span>
-                        </div>
+                                                {/* modal ends */}
+                                            </tr>
+                                        })
+                                    }
+                                </table>
                     }
                 </div>
             </div>

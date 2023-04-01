@@ -57,7 +57,7 @@
   font-size: 16px;
   padding: 2px 0;
 }
-.detailMobileArea .rightDetailBox .detailspans span {
+.detailMobileArea .rightDetailBox .detailspans .stocks {
   font-weight: 500;
   font-size: 20px;
 }
@@ -187,5 +187,21 @@
   }
   100%, 0% {
     transform: scale(1);
+  }
+}
+@media screen and (max-width: 768px) {
+  .detailMobileArea {
+    width: 100%;
+    padding: 20px;
+  }
+  .detailMobileArea .detailsBox {
+    padding: 20px 0;
+  }
+  .detailMobileArea .rightDetailBox {
+    padding: 20px 0;
+  }
+  .detailMobileArea .rightDetailBox .detailspans {
+    display: flex;
+    justify-content: space-between;
   }
 }/*# sourceMappingURL=detailmobile.css.map */

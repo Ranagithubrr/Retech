@@ -1,12 +1,14 @@
 .sidebar {
     width: 20%;
     height: 100vh;
-    overflow-y: scroll;    
+    overflow-y: scroll;
     padding-left: 20px;
     position: fixed;
     background-color: #fff;
-    top:10rem;
-
+    top: 8rem;
+    .closeIcon{
+        display: none;
+    }
     h4 {
         font-size: 20px;
     }
@@ -60,6 +62,26 @@
                     width: 100%;
                     height: 100%;
                 }
+
+            }
+
+            .signOutBtn {
+                list-style: none;
+                padding: 0px 20px;
+                display: flex;
+                align-items: center;
+
+                span {
+                    padding:10px 0;
+                    color: #777777;
+                    font-weight: 500;
+                    font-size: 15px;
+                }
+                .icon{
+                    font-size: 20px;
+                    padding-right: 15px;
+                }
+
             }
         }
     }
@@ -95,4 +117,32 @@
 .sidebar::-webkit-scrollbar-thumb {
     background-color: darkgrey;
     outline: 1px solid slategrey;
+}
+
+
+// responsive Area
+
+@media screen and (max-width:768px) {
+    .sidebar{
+        position: fixed;
+        transition: 0.3s ease-in-out;
+        top:0;
+        left:0;
+        width:70vw;
+        background-color: #fff;
+        margin-left: -100vw;
+        z-index: 100;
+        padding-top:50px;
+        .closeIcon{
+            position: absolute;
+            display: block;
+            top:20px;
+            right:20px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+    } 
+    .showSideBar{        
+        margin-left: 0;       
+    }
 }
