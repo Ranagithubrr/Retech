@@ -7,7 +7,7 @@ import './AdminDashboard.css';
 const Admindash = () => {
     // total mobile
     const { mobilelists } = useContext(MobileContext)
-    console.log(mobilelists);
+    // console.log(mobilelists);
 
     // total customer
     const [customers, setCustomers] = useState({});
@@ -19,7 +19,7 @@ const Admindash = () => {
                 setCustomers(mobiledatadb);;
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
             })
     }
     useEffect(() => {
@@ -33,10 +33,10 @@ const Admindash = () => {
                 const mobiledatadb = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setOrders(mobiledatadb);
-                console.log(orders);
+                // console.log(orders);
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
             })
     }
 
@@ -50,11 +50,11 @@ const Admindash = () => {
     // completed total order
     const [loading, setLoading] = useState(true);
     const [completedOrders, setCompletedOrders] = useState({});
-    !loading && console.log(completedOrders);
+    // !loading && console.log(completedOrders);
     !loading && completedOrders.map((ord) => {
         return totalRevenue = totalRevenue + parseInt(ord.completeOrderData.price)
     })
-    console.log(totalRevenue);
+    // console.log(totalRevenue);
 
     const fetchCompletedOrders = async () => {
         await getDocs(collection(db, "completedorders"))
@@ -63,10 +63,10 @@ const Admindash = () => {
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setCompletedOrders(completedmobiledatadb);
                 setLoading(false)
-                console.log(completedOrders);
+                // console.log(completedOrders);
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
             })
     };
     useEffect(() => {

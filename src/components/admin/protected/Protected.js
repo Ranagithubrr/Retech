@@ -5,7 +5,7 @@ import { AuthContext } from '../../../contexts/AuthContexts';
 
 const Protected = ({ children }) => {
     const {currentUser} = useContext(AuthContext);
-    console.log(currentUser);
+    // console.log(currentUser);
     const navigate = useNavigate();
 
     if (!currentUser || currentUser === undefined) {

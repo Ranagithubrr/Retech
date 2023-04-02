@@ -18,7 +18,7 @@ export const MobileContextProvider = ({ children }) => {
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setMobiles(mobiledatadb);
                 setFilteredMobiles(mobiledatadb);
-                setLoading(false)
+                setLoading(true);
                 // console.log(mobilelists);
             })
             .catch((err) => {

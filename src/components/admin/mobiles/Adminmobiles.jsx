@@ -20,8 +20,8 @@ const Adminmobiles = () => {
                 const mobiledatadb = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setMobiles(mobiledatadb);
-                setLoading(false)
-                console.log(mobiles);
+                setLoading(true)
+                // console.log(mobiles);
             })
             .catch((err) => {
                 console.log(err);
@@ -33,7 +33,7 @@ const Adminmobiles = () => {
         fetchmobiles();
     }, [])
     useEffect(() => {
-        console.log(mobiles);
+        // console.log(mobiles);
     }, [mobiles])
 
     const DeleteItem = async (id) => {
@@ -90,6 +90,7 @@ const Adminmobiles = () => {
                         <div className="adminmobileDiv">
                             <div className="mobileTable">
                                 <table>
+                                    <tbody>
                                     <tr>
                                         <th></th>
                                         <th>Mobile Name</th>
@@ -100,7 +101,7 @@ const Adminmobiles = () => {
                                     </tr>
                                     {
                                         mobiles.map((mob, index) => {
-                                            return <tr>
+                                            return <tr key={mob.id}>
                                                 <td> <span className='serial'>{index + 1}.</span> <img src={MobileImg} alt="mobileImage" /></td>
                                                 <td>{mob.mobileDetail.model}</td>
                                                 <td><div className='activeStatus'> {mob.mobileDetail.status === 'active' ? <div className='activeIcon'></div> : <div className='pauseIcon'></div>} {mob.mobileDetail.status}</div></td>
@@ -110,6 +111,7 @@ const Adminmobiles = () => {
                                             </tr>
                                         })
                                     }
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

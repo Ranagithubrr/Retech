@@ -1,101 +1,110 @@
 .mobileBox {
-    // background-color: gray;
-    width: 70%;
-    margin: 0 auto;
-    margin-top: 10px;
-    // border: 2px solid #124D99;
-    border-radius: 8px;
-    overflow: hidden;
-    text-align: center;
-    position: relative;    
-  .discount{
+  // background-color: gray;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 10px;
+  // border: 2px solid #124D99;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+
+  .discount {
     position: absolute;
-    padding:0;
-    left:-5.5rem;
-    top:1.5rem;
+    padding: 0;
+    left: -5.5rem;
+    top: 1.5rem;
     background-color: crimson;
-    color:#fff;
+    color: #fff;
     font-weight: 500;
-    width:100%;
+    width: 100%;
     text-align: center;
     font-size: 14px;
     transform: rotate(-45deg);
   }
-  
-    img {
-        // width: 10rem;
-        max-height: 12rem;
-    }
-    div{
-      text-align: left;
-      padding-top: 10px;
-    }
-    h6{
-        font-size:16px;
-        margin:5px 0;
-        padding-left: 10px;
-    }
-    span{
-        font-weight: 500;
-        padding-left: 10px;
-    }
-    .viewMobile {
-        background-color: #124D99;
-        color: #dcdcdc;
-        border: none;
-        outline: none;
-        border-radius: 3px;
-        padding: 4px 10px;
-        display: block;
-        margin-top: 5px;
-        text-decoration: none;
-        text-align: center;
-        width:100%;
-    }
-  }
-  
-  .emptyDiv{
-    height:50vh;
-    width:75vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    span{
-        display: block;
-    }
-    .nomobiles{
-        font-weight: 500;
-        font-size: 22px;
-        color:#124D99;
-    }
-    .addamobile{
-        font-weight: 500;
-        font-size: 20px;
-        color:#124D99;
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        a{
-            color:#124D99;
-        }
-        span{
-            font-size: 35px;
-            margin-left: 10px;
-            display: flex;
-            align-items: center;
-        }
-    }
+
+  img {
+    // width: 10rem;
+    max-height: 12rem;
   }
 
+  div {
+    text-align: left;
+    padding-top: 10px;
+  }
 
-  .spinerBox{
-    height:50vh;
-    width:70vw;
+  h6 {
+    font-size: 16px;
+    margin: 5px 0;
+    padding-left: 10px;
+  }
+
+  span {
+    font-weight: 500;
+    padding-left: 10px;
+  }
+
+  .viewMobile {
+    background-color: #124D99;
+    color: #dcdcdc;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 4px 10px;
+    display: block;
+    margin-top: 5px;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.emptyDiv {
+  height: 50vh;
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    display: block;
+  }
+
+  .nomobiles {
+    font-weight: 500;
+    font-size: 22px;
+    color: #124D99;
+  }
+
+  .addamobile {
+    font-weight: 500;
+    font-size: 20px;
+    color: #124D99;
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;    
+
+    a {
+      color: #124D99;
+    }
+
+    span {
+      font-size: 35px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+    }
   }
+}
+
+
+.spinerBox {
+  height: 50vh;
+  width: 70vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .spinner {
     margin: 100px auto;
@@ -103,77 +112,100 @@
     height: 40px;
     text-align: center;
     font-size: 10px;
-  }
-  
-  .spinner > div {
-    background-color: #124D99;
-    height: 100%;
-    width: 6px;
-    margin:0 3px;
-    display: inline-block;
-    
-    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-    animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  }
-  
-  .spinner .rect2 {
-    -webkit-animation-delay: -1.1s;
-    animation-delay: -1.1s;
-  }
-  
-  .spinner .rect3 {
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
-  }
-  
-  .spinner .rect4 {
-    -webkit-animation-delay: -0.9s;
-    animation-delay: -0.9s;
-  }
-  
-  .spinner .rect5 {
-    -webkit-animation-delay: -0.8s;
-    animation-delay: -0.8s;
-  }
-  
-  @-webkit-keyframes sk-stretchdelay {
-    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
-    20% { -webkit-transform: scaleY(1.0) }
-  }
-  
-  @keyframes sk-stretchdelay {
-    0%, 40%, 100% { 
-      transform: scaleY(0.4);
-      -webkit-transform: scaleY(0.4);
-    }  20% { 
-      transform: scaleY(1.0);
-      -webkit-transform: scaleY(1.0);
+
+    .spinner>div {
+      background-color: #124D99;
+      height: 100%;
+      width: 6px;
+      margin: 0 3px;
+      display: inline-block;
+
+      -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+      animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    }
+
+    .spinner .rect2 {
+      -webkit-animation-delay: -1.1s;
+      animation-delay: -1.1s;
+    }
+
+    .spinner .rect3 {
+      -webkit-animation-delay: -1.0s;
+      animation-delay: -1.0s;
+    }
+
+    .spinner .rect4 {
+      -webkit-animation-delay: -0.9s;
+      animation-delay: -0.9s;
+    }
+
+    .spinner .rect5 {
+      -webkit-animation-delay: -0.8s;
+      animation-delay: -0.8s;
     }
   }
 
+}
 
 
-  @media screen and (max-width:768px) {
-    .spinerBox{
-      width:90vw;
-      margin:0 auto;
+
+
+
+@-webkit-keyframes sk-stretchdelay {
+
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4)
+  }
+
+  20% {
+    -webkit-transform: scaleY(1.0)
+  }
+}
+
+@keyframes sk-stretchdelay {
+
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }
+
+  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+
+
+@media screen and (max-width:768px) {
+  .spinerBox {
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  .emptyDiv {
+    width: 80vw;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .mobileBox {
+    width: 85%;
+
+    h6 {
+      font-size: 15px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
-    .emptyDiv{
-      width:80vw;
-      margin:0 auto;
-      text-align: center;
-    }
-    .mobileBox{
-      width:85%;
-      h6{
-        font-size: 15px;
-        text-overflow: ellipsis;
-        white-space: nowrap; 
-        overflow: hidden;     
-      }    
-      .discount{
-        top:20px;
-        left:-50px;
-      }
+
+    .discount {
+      top: 20px;
+      left: -50px;
     }
   }
+}

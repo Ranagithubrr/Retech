@@ -37,16 +37,16 @@ const Sidebar = () => {
     const { currentUser } = useContext(AuthContext);
     const signOutClicked = () => {
         signOut(auth).then(() => {
-            console.log('signed out');
+            // console.log('signed out');
         }).catch((error) => {
-            console.log('an error');
+            // console.log('an error');
         });
     }
     const NavItemsClicked =() =>{
         setSidebar('');    
     }
 
-    console.log(sidebar);
+    // console.log(sidebar);
     return (
         <div className={`sidebar ${sidebar}`}>
             <span className='closeIcon' onClick={()=>setSidebar('')}><GrFormClose /></span>

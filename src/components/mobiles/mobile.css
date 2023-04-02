@@ -91,16 +91,14 @@
   align-items: center;
   justify-content: center;
 }
-
-.spinner {
+.spinerBox .spinner {
   margin: 100px auto;
   width: 80px;
   height: 40px;
   text-align: center;
   font-size: 10px;
 }
-
-.spinner > div {
+.spinerBox .spinner .spinner > div {
   background-color: #124D99;
   height: 100%;
   width: 6px;
@@ -108,20 +106,16 @@
   display: inline-block;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
-
-.spinner .rect2 {
+.spinerBox .spinner .spinner .rect2 {
   animation-delay: -1.1s;
 }
-
-.spinner .rect3 {
+.spinerBox .spinner .spinner .rect3 {
   animation-delay: -1s;
 }
-
-.spinner .rect4 {
+.spinerBox .spinner .spinner .rect4 {
   animation-delay: -0.9s;
 }
-
-.spinner .rect5 {
+.spinerBox .spinner .spinner .rect5 {
   animation-delay: -0.8s;
 }
 @keyframes sk-stretchdelay {

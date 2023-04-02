@@ -34,14 +34,11 @@ const Navbar = () => {
     }
     if (mobilelists.length >= 35) {
         hotdealList = mobilelists.slice(15, 20)
-    }
-    console.log(hotdealList);
+    }    
 
     const signOutClicked = () => {
-        signOut(auth).then(() => {
-            console.log('signed out');
-        }).catch((error) => {
-            console.log('an error');
+        signOut(auth).then(() => {            
+        }).catch((error) => {            
         });
     }
     const { sidebar, setSidebar } = useContext(SidebarContext);
@@ -59,7 +56,7 @@ const Navbar = () => {
                         <Marquee className='hotDealItems'>
                             {
                                 hotdealList && hotdealList.map((ele) => {
-                                    return <span><FaMobileAlt /> {ele.mobileDetail.model}</span>
+                                    return <span key={ele.id}><FaMobileAlt /> {ele.mobileDetail.model}</span>
                                 })
                             }
                         </Marquee>

@@ -22,7 +22,7 @@ const Dasboard = () => {
     // console.log(mobilelists);
 
     useEffect(() => {
-        console.log(filteredmobilelists);
+        // console.log(filteredmobilelists);
     }, [filteredmobilelists]);
     const FilterItems = () => {
         // setMobiles([])
