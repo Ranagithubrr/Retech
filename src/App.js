@@ -1,6 +1,6 @@
 import './App.css';
 import Dasboard from './components/dashboard/Dasboard';
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import About from './pages/about/About';
 import Contact from './pages/contact/Contact';
 import Mobile from './components/mobiles/Mobile';
@@ -12,9 +12,6 @@ import Addmobile from './components/admin/addmobile/Addmobile';
 import Orders from './components/admin/orders/Orders';
 import Customers from './components/admin/customers/Customers';
 import Login from './loginpage/Login';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './Firebase-config/Firebase-config';
-import { useEffect, useState } from 'react';
 import Protected from './components/admin/protected/Protected';
 import UpdateMobile from './components/admin/updateMobile/UpdateMobile';
 
