@@ -25,7 +25,7 @@ const Orders = () => {
                 const mobiledatadb = querySnapshot.docs
                     .map((doc) => ({ ...doc.data(), id: doc.id }));
                 setOrders(mobiledatadb);
-                setLoading(true)
+                setLoading(false)
                 // console.log(orders);
             })
             .catch((err) => {
@@ -191,13 +191,14 @@ const Orders = () => {
                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
                     {
                         completedloading ? <div className="spinerBox">
-                            <div class="spinner">
+                            {/* <div class="spinner">
                                 <div class="rect1"></div>
                                 <div class="rect2"></div>
                                 <div class="rect3"></div>
                                 <div class="rect4"></div>
                                 <div class="rect5"></div>
-                            </div>
+                            </div> */}
+                            loading . . . . .
                         </div> :
                             completedOrders.length === 0 ?
                                 <div className="emptyDiv">

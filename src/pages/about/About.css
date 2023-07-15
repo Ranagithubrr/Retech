@@ -3,33 +3,20 @@
   margin-left: auto;
   padding: 0 20px;
 }
-.aboutPage .members {
-  width: 80%;
-  margin: 0 auto;
+.aboutPage .aboutRetech {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #185199;
 }
-.aboutPage .members .top img {
-  width: 20rem;
-  height: 20rem;
-  border-radius: 10px;
-  border-bottom: 5px solid #134E99;
+.aboutPage p {
+  text-align: center;
 }
-.aboutPage .members .bottom {
-  padding: 10px 0;
+.aboutPage h6 {
+  text-align: center;
 }
-.aboutPage .members .bottom h5 {
-  font-size: 18px;
-  font-weight: 600;
-}
-.aboutPage .members .bottom a {
-  display: block;
+.aboutPage h6 a {
   text-decoration: none;
-  font-size: 14px;
-  color: #3b3b3b;
-  font-weight: 500;
-}
-.aboutPage .members .bottom span {
-  padding-right: 5px;
-  margin-right: 5px;
 }
 
 @media screen and (max-width: 768px) {

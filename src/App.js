@@ -14,6 +14,7 @@ import Customers from './components/admin/customers/Customers';
 import Login from './loginpage/Login';
 import Protected from './components/admin/protected/Protected';
 import UpdateMobile from './components/admin/updateMobile/UpdateMobile';
+import Notfound from './pages/notfound/Notfound';
 
 function App() {
   return (
@@ -58,8 +59,8 @@ function App() {
           <Route path="contact" element={<Contact />} />
         </Route>
 
-        <Route path="mobile" element={<Mobile />} />
         <Route path="admin" element={<Login />} />
+        <Route path="*" element={<Notfound />} />
       </Routes>
 
     </div>
