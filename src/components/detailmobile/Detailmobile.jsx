@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './detailmobile.css';
 import { useParams } from 'react-router-dom';
-import mobilePic from '../../imgs/iphone1.webp';
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { db } from '../../Firebase-config/Firebase-config.js';
-import loadingImg from '../../imgs/loading.gif';
 import { toast, ToastContainer } from 'react-toastify';
 import { validate } from 'email-validator';
 
@@ -57,10 +55,7 @@ const Detailmobile = () => {
         try {
             const docRef = await addDoc(collection(db, "orders"), {
                 order
-            });
-            const docReftwo = await addDoc(collection(db, "customers"), {
-                order
-            });
+            });           
 
             console.log("Document written with ID: ", docRef.id);
             setOrderPlaced(true)
@@ -107,7 +102,7 @@ const Detailmobile = () => {
                 theme: "light",
             });
         }
-        else if (order.phone.charAt(0) != 0 || order.phone.charAt(1) != 1) {
+        else if (order.phone.charAt(0) !== 0 || order.phone.charAt(1) !== 1) {
             toast.warn('invalid mobile', {
                 position: "top-center",
                 autoClose: 2000,
@@ -151,10 +146,12 @@ const Detailmobile = () => {
     }
     useEffect(() => {
         loadMobileData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
         console.log(mobile);
         setOrder({ ...order, device: mobile.model + ' - ' + mobile.ram + '/' + mobile.rom, price: mobile.price });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mobile]);
 
     return (

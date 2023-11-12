@@ -1,11 +1,6 @@
 import React from 'react';
 import './About.css';
-import Majed from '../../imgs/mazed-transformed.png'
-import Suzzad from '../../imgs/suzzad.jpg';
 import { Link } from 'react-router-dom';
-import {FiUser} from 'react-icons/fi';
-import {ImUserTie} from 'react-icons/im';
-import {MdCall,MdMail} from 'react-icons/md';
 
 const About = () => {
     return (

@@ -5,14 +5,9 @@ import { FiPhoneCall } from 'react-icons/fi';
 import { FaMobileAlt } from 'react-icons/fa';
 import { ImFire } from 'react-icons/im';
 import { RiBarChartHorizontalLine } from 'react-icons/ri';
-import { GoSignOut } from 'react-icons//go';
-import { signOut } from 'firebase/auth'
-import { auth } from '../../Firebase-config/Firebase-config';
-import { AuthContext } from '../../contexts/AuthContexts';
 import { Link } from 'react-router-dom';
 import Marquee from "react-fast-marquee";
 import { MobileContext } from '../../contexts/MobileContext';
-import { useState } from 'react';
 import { SidebarContext } from '../../contexts/SidebarContext';
 
 
@@ -34,14 +29,8 @@ const Navbar = () => {
     }
     if (mobilelists.length >= 35) {
         hotdealList = mobilelists.slice(15, 20)
-    }    
-
-    const signOutClicked = () => {
-        signOut(auth).then(() => {            
-        }).catch((error) => {            
-        });
-    }
-    const { sidebar, setSidebar } = useContext(SidebarContext);
+    }       
+    const {setSidebar } = useContext(SidebarContext);
 
     const BarClicked = () => {
         setSidebar('showSideBar')

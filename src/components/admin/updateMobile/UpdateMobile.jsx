@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { AiOutlinePlusCircle } from 'react-icons/ai'
-import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db, storage } from '../../../Firebase-config/Firebase-config';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { v4 } from 'uuid'
+import {doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../../../Firebase-config/Firebase-config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const UpdateMobile = () => {
-    const navigate = useNavigate();
+const UpdateMobile = () => {    
 
 
-    const { id } = useParams();
-    // console.log('id is:', id);
-    const [imglink, setimglink] = useState('');
-    const [loading, setLoading] = useState(false)
+    const { id } = useParams();    
+    const [loading, setLoading] = useState(false);
     const [loadingClass, setLoadingClass] = useState('');
     const [mobile, setMobile] = useState({});
 
@@ -57,6 +51,7 @@ const UpdateMobile = () => {
 
     useEffect(() => {
         loadMobileData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
         console.log(loading);
@@ -82,6 +77,7 @@ const UpdateMobile = () => {
             console.log(mobile);
             console.log(mobileDetail);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mobile]);
 
     const Submitclicked = async (e) => {
@@ -129,6 +125,7 @@ const UpdateMobile = () => {
                     progress: undefined,
                     theme: "colored",
                 });
+                setLoadingClass('false');
                 
             }
             catch (err) {

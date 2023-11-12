@@ -1,10 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext} from 'react';
 import { Link } from 'react-router-dom';
-import Iphone from '../../imgs/iphone1.webp';
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import './mobile.css';
-import { db } from '../../Firebase-config/Firebase-config'
-import { collection, getDocs } from 'firebase/firestore';
 import { MobileContext } from '../../contexts/MobileContext';
 import { AuthContext } from '../../contexts/AuthContexts';
 
@@ -12,8 +9,7 @@ const Mobile = () => {
     const { mobilelists, filteredmobilelists } = useContext(MobileContext);
     const { currentUser } = useContext(AuthContext)
     const { loading } = useContext(MobileContext);
-    console.log(loading);
-    // console.log(mobilelists);
+    console.log(loading);    
     return (
         <div className="row">
             {
@@ -61,6 +57,7 @@ const Mobile = () => {
                                         </div>
                                     );
                                 }
+                                return null;
 
                             })
                         )

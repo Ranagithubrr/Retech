@@ -11,8 +11,7 @@ import { Link } from 'react-router-dom';
 const Adminmobiles = () => {
 
     const [mobiles, setMobiles] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [deleting, setDeleting] = useState(true);
+    const [loading, setLoading] = useState(true);    
 
     const fetchmobiles = async () => {
         await getDocs(collection(db, "mobiles"))

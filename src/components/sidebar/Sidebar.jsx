@@ -31,6 +31,7 @@ const Sidebar = () => {
                     filteredItems.push(ele);
                 }
             };
+            return null;
         });
         setFilteredMobiles(filteredItems)
     }

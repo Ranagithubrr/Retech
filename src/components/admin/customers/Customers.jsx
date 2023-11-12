@@ -1,9 +1,8 @@
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { FiCheckSquare, FiTrash2 } from 'react-icons/fi';
+import { FiTrash2 } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import { db } from '../../../Firebase-config/Firebase-config';
-import MobileImg from '../../../imgs/iphone1.webp';
 import 'react-tooltip/dist/react-tooltip.css';
 import { Tooltip } from 'react-tooltip'
 const Customers = () => {
@@ -29,6 +28,7 @@ const Customers = () => {
 
     useEffect(() => {
         fetchCustomers();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
         console.log(customers);

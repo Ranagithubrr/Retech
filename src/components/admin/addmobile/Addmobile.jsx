@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './Addmobile.css';
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { addDoc, collection, updateDoc } from 'firebase/firestore';
@@ -8,8 +8,7 @@ import { v4 } from 'uuid'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Addmobile = () => {
-    const [imglink, setimglink] = useState('');
+const Addmobile = () => {    
     const [loading, setLoading] = useState(false)
     const [loadingClass, setLoadingClass] = useState('');
     const [imageUploaded, setImageUploaded] = useState(false);
@@ -34,7 +33,7 @@ const Addmobile = () => {
 
     const maxImages = 5;
 
-    const sendDataToDB = async () => {
+    const sendDataToDB = useCallback(async () => {
         try {
             const docRef = await addDoc(collection(db, "mobiles"), {
                 mobileDetail
@@ -75,7 +74,7 @@ const Addmobile = () => {
             setLoading(false);
         }
 
-    }
+    },[mobileDetail]);
 
     useEffect(() => {
         if (imageUploaded) {
@@ -86,7 +85,7 @@ const Addmobile = () => {
                 window.alert('select at least one Image')
             }
         }
-    }, [mobileDetail]);
+    }, [mobileDetail,imageUploaded,sendDataToDB]);
 
     const Submitclicked = async (e) => {
         console.log(mobileDetail);
@@ -94,7 +93,7 @@ const Addmobile = () => {
             mobileDetail.brand === ''
             || mobileDetail.model === ''
             || mobileDetail.userange === ''
-            || mobileDetail.price == ''
+            || mobileDetail.price.toString === ''
             || mobileDetail.ram === ''
             || mobileDetail.rom === ''
             || mobileDetail.frontCamera === ''

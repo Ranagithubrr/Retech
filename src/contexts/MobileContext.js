@@ -1,7 +1,6 @@
-import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import { createContext, useEffect, useState } from "react";
-import { auth, db } from "../Firebase-config/Firebase-config";
+import { db } from "../Firebase-config/Firebase-config";
 
 export const MobileContext = createContext();
 

@@ -47,6 +47,7 @@ const Dasboard = () => {
                         filteredItems.push(ele);
                     }
                 };
+                return (null)
             });
             setFilteredMobiles(filteredItems)
             console.log('main mobile list is:', mobilelists);
@@ -63,7 +64,9 @@ const Dasboard = () => {
                         if (ele.mobileDetail.status === 'active') {
                             filteredItems.push(ele);
                         }
+                        
                     }
+                    
 
                 }
                 else if (FilterdParams.price === '10000-15000') {
@@ -106,6 +109,7 @@ const Dasboard = () => {
                         }
                     }
                 }
+                return(null)
             });
             setFilteredMobiles(filteredItems)
             console.log('main mobile list is:', mobilelists);
@@ -255,6 +259,7 @@ const Dasboard = () => {
                         }
                     }
                 }
+                return(null)
             });
             setFilteredMobiles(filteredItems)
             console.log('main mobile list is:', mobilelists);
@@ -317,6 +322,7 @@ const Dasboard = () => {
                         }
                     }
                 }
+                return(null)
             });
             setFilteredMobiles(filteredItems)
             console.log('main mobile list is:', mobilelists);
@@ -340,6 +346,7 @@ const Dasboard = () => {
     }
     useEffect(() => {
         ClearFilter();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

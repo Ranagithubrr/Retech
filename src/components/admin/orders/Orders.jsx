@@ -4,7 +4,6 @@ import { MdCall, MdPictureAsPdf } from 'react-icons/md';
 import MobileImg from '../../../imgs/iphone1.webp';
 import { db } from '../../../Firebase-config/Firebase-config';
 import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
-import { Link } from 'react-router-dom';
 import Logo from '../../../imgs/Retech-removebg-preview.png';
 import './Order.css';
 import ReactToPrint from 'react-to-print';
@@ -177,7 +176,7 @@ const Orders = () => {
                                                 <td><span className='serial'>{index + 1}. </span><img src={MobileImg} alt="mobileImage" /></td>
                                                 <td>{ord.order.customername}</td>
                                                 <td>{ord.order.phone}</td>
-                                                <td>{ord.order.email != '' ? ord.order.email : '(email not provided)'}</td>
+                                                <td>{ord.order.email !== '' ? ord.order.email : '(email not provided)'}</td>
                                                 <td>{ord.order.device}</td>
                                                 <td>{ord.order.time}</td>
                                                 <td> <span class="d-inline-block" data-tooltip-id="my-tooltip" data-tooltip-content="Mark Order as Complete"><span className='completeIcon' onClick={() => completeOrder(ord)}><FiCheckSquare /></span></span> <span class="d-inline-block" data-tooltip-id="my-tooltip2" data-tooltip-content="Delete Order"> <span className='deletIcon' onClick={() => DeleteItem(ord.id)}><FiTrash2 /></span> </span> </td>
