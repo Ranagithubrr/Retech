@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import { AuthContextProvider } from './contexts/AuthContexts';
-import { MobileContext, MobileContextProvider } from './contexts/MobileContext';
+import { MobileContextProvider } from './contexts/MobileContext';
 import { SidebarContextProvider } from './contexts/SidebarContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
