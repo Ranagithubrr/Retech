@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import './Addmobile.css';
 import { AiOutlinePlusCircle } from 'react-icons/ai'
-import { addDoc, collection, updateDoc } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import { db, storage } from '../../../Firebase-config/Firebase-config';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { v4 } from 'uuid'

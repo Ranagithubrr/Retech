@@ -124,6 +124,7 @@ const Dasboard = () => {
                         filteredItems.push(ele);
                     }
                 }
+                return null;
             });
             setFilteredMobiles(filteredItems)
             console.log('main mobile list is:', mobilelists);
